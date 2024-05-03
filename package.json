@@ -2,7 +2,7 @@
   "name": "sdngara",
   "version": "1.0.0",
   "description": "GARA SDN con sochet.io",
-  "main": "index0.js",
+  "main": "appX.js",
   "scripts": {
     "test": "nodemon nodemon --ext js appX.js",
     "start": "node index0.js"
