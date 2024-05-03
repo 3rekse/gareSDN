@@ -56,9 +56,9 @@ const os = require('os');
 //console.log(`Indirizzo IP locale del server: http://${serverIpAddress}`);
 
 //const filePath = path.join(__dirname, 'indexChat.html');
-const updatedChat = fs.readFileSync('/indexChat.html', 'utf8');
+const updatedChat = fs.readFileSync('./indexChat.html', 'utf8');
   // Sostituisci il segnaposto con l'indirizzo del server
-//const updatedChat = htmlChat.replace('__SERVER_ADDRESS__', serverIpAddress);
+const updatedChat = htmlChat.replace('__SERVER_ADDRESS__', 'garasdn.glitch.me:'+(process.env.PORT || 11911));
 const cors = require('cors'); // Importa il middleware CORS
 
 const app = express();
