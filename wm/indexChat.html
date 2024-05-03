@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Binary Challenge!</title>
+        <style>
+            .us-input {
+    user-select: none;
+}
+            #zone_chat strong {
+                color: white;
+                background-color: black;
+                padding: 2px;
+            }
+            #canvas-container { position: relative;    }
+            #chat_start strong {
+               
+      background-color: rgba(122, 247, 132, 0.1); /* Sfondo semitrasparente */
+      padding: 20px;
+                color: white;
+                background-color: black;
+                padding: 2px;
+            }
+
+    #myCanvas {
+      background-color: #b4d7dd;
+      border: 1px solid rgb(1, 25, 156);
+    }
+    button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button.off {
+    background-color: red;
+}
+    .overlay-section {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      background-color: rgba(122, 166, 247, 0.1); /* Sfondo semitrasparente */
+      padding: 20px;
+      z-index: 1; /* Sovrapposizione sopra il canvas */
+   
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-section, .right-section {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.right-section {
+  background-color: #e0e0e0;
+}
+        </style>
+    </head>
+ 
+    <body>
+        <form action="/" method="post" id="chat_start">
+            <input type="text" name="nome" id="mynome" placeholder="il tuo nome.." maxlength="10" size="15" autofocus />
+            <input type="text" name="cognome" id="mycognome" placeholder="il tuo cognome.." maxlength="10" size="15" autofocus />
+            <input type="text" name="classe" id="classe" placeholder="la tua classe.." maxlength="10" size="10" autofocus />
+            <!--input type="submit" id="invia" value="Start" /-->
+            <button type="button" id="invia">Start</button>    
+        </form>
+       
+        <div  id="canvas-container">
+            <canvas id="myCanvas" width="100" height="100"></canvas>
+           
+            <section class="overlay-section">
+                <section class="left-section" id="chat_zone">
+                <h1>Binary Challenge <span id='gara'> </span>!</h1>
+                <h2 id='avatar'></h2>
+                <p id='url'>Puoi trovare il codice Unicode del tuo avatar al seguente Url : https://www.compart.com/en/unicode/block/U+1F300 <br> ATTENZIONE non abbandonare questa pagina !!</p>
+                <form action="/" method="post" id="chat_form">
+                    <input type="text" name="message" id="message" placeholder="la tua risposta..." size="50" autofocus />
+                    <input type="submit" id="send_message" value="Invia" />
+                    <p id="boardn"></p>
+                    <p id="boardr"></p>                 
+                        <!--input type="submit" id="chiudiConnessione" value="Esci "--> 
+                </form>
+                
+                    
+                </section>
+                <section class="right-section" id="classifica">
+                    <h1>Posizioni / Voto</h1>
+                     <ol id="ol">
+                      <li id="0"></li>
+                     </ol>
+                  </section>
+    
+            </section>
+            
+
+          </div>
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <!--script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script-->
+        <script>
+            const toggleButton = document.getElementById("invia");
+            const innome = document.getElementById("mynome");
+            const canvas = document.getElementById("myCanvas");
+            const context = canvas.getContext("2d");
+            const  send_message = document.getElementById("send_message");     
+            send_message.disabled= true;
+          /*  let username =prompt('BENVENUTO  .... Ma ...what\'s your username?');
+            let classe = prompt('BENVENUTO  .... Ma ...what\'s your classroom?');
+            socket.emit('new_client', {username:username, classe:classe});
+            document.title = username + ' - ' + document.title;*/
+                // Disegna qualcosa sul canvas
+    //context.fillStyle = "blue";
+    //context.fillRect(50, 50, 200, 150);
+            // Connecting to socket.io
+     //  let socket = io.connect('http://localhost:8080');
+       var socket = io('http://__SERVER_ADDRESS__:11911', {
+        autoConnect: false,
+}); // Connette al server Socket.io
+ // Imposta il font e il colore del testo
+            context.font = "10px Arial";
+            context.fillStyle = "blue";
+            let livello = 0;
+    // Scrivi il testo sul canvas
+/*            context.fillText("Ciao "+username, 10, 25);
+*/
+     $("#url").hide();
+function drawCharacter() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.font = "60px Arial";
+      context.fillText(String.fromCodePoint( 127789+ Math.floor(Math.random() * 100)),25, 75);
+    }
+    
+
+socket.on('banned',function (){ 
+    $(`#gara`).text('ELIMINATO');
+    $('#send_message').prop('disabled', true);
+    socket.disconnect();
+});
+socket.on('gara',function (g){ $(`#gara`).text('Numero '+g)});
+socket.on('down',function (g){
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.font = "50px Arial";
+      context.fillText(g,25, 75);
+      if(g==0){
+        $("#chat_form").show();
+        $("#url").hide();
+        setInterval(drawCharacter, 5000);
+      }
+      
+    });
+socket.on('avatar', function(username) {
+                $('#avatar').text('Avatar :'+username.username+''+username.real);
+                $("#url").show();
+            })
+
+            // When a message is received it's inserted in the page
+socket.on('message', function(data) {
+                if (data.liv==livello) {
+                insertMessage(data.username, data.real , data.message,data.punti);}
+                let poz=(0>data.punti?0:data.punti);
+                if (!$(`#${poz}`).length) {
+                    if (!$(`#${poz-1}`).length) {$('#ol').prepend(`<li id=${poz-1}></li>`);}
+                    $('#ol').prepend(`<li id=${poz}></li>`);
+                } 
+                if (!$(`#${data.username}`).length){ 
+                    $(`#${poz}`).prepend('<p id='+data.username+'>'+data.username+' '+ data.real+' '+data.data + ' <span id=pnt'+data.username+'>'+data.punti/4+'</span></p>');
+                }else{
+                $(`#${data.username}`).appendTo(`#${poz}`);
+                $(`#${"pnt"+data.username}`).text(`${data.punti/4}`);
+                }
+            })
+
+            // When a new client connects, the information is displayed
+socket.on('new_client', function(username) {
+                $('#0').prepend('<p id='+username.username+'>' + username.username+' '+username.real +" "+
+                    username.classe+' <span id=pnt'+username.username+'>0</span></p>');
+            })
+
+socket.on('new_number', function(num) {
+            if(num.ok) {livello++;}
+            if(num.liv===livello)
+                {$('#boardn').html('<p><em>' + num.msg+ ' </em>'+num.liv+'</p>');}
+           else {$('#boardn').html('<p>' + num.msg+ ' '+num.liv+'</p>');}
+});
+// When the form is sent, the message is sent and displayed on the page
+
+$('#chat_form').submit(function () {
+                var message = $('#message').val();
+                socket.emit('message',{liv:livello,msg: message}); // Sends the message to the others
+               $('#boardr').prepend('<p><strong>\u25BA </strong> ' + message + '</p>');
+                  
+               // insertMessage(username, message); // Also displays the message on our page
+                $('#message').val('').focus(); // Empties the chat form and puts the focus back on it
+                return false; // Blocks 'classic' sending of the form
+            });
+$("#invia").click(function () {
+          
+    if (toggleButton.textContent ==='Stop')
+    { socket.disconnect(); // Chiudi la connessione
+        toggleButton.textContent = "Invia";
+        toggleButton.classList.remove("off");
+        innome.readOnly = true;
+        send_message.disabled = true;
+     //   $('#board').prepend('<a  href="/top" target="_blank">Classifica</a> ');
+      //  $('#invia').text ('Start');
+    } 
+    else{ socket.connect(); 
+        toggleButton.textContent = "Stop";
+        toggleButton.classList.add("off");
+        innome.readOnly = true;
+        send_message.disabled= false;
+    // The username is requested, sent to the server and displayed in the title
+       let username =$('#mynome').val()+" "+$('#mycognome').val(); 
+       //prompt('BENVENUTO  .... Ma ...what\'s your username?');
+            let classe =$('#classe').val();
+            // prompt('BENVENUTO  .... Ma ...what\'s your classroom?');
+            socket.emit('new_client', {username:username, classe:classe});
+            document.title = username + ' - ' + document.title;
+        $('#message').val('').focus(); // Empties the chat form and puts the focus back on it
+        $("#chat_form").hide();
+    
+
+    } 
+    return false; // Blocks 'classic' sending of the form
+});            
+            // Adds a message to the page
+function insertMessage(username,real, message,punti) {
+                $('#boardr').prepend('<p><strong>' + username + '</strong> '+real+' ' + message +' Punti:'+punti +'</p>');
+            }
+              // Chiusura attiva della connessione dal client
+/*document.getElementById('chiudiConnessione').addEventListener('click', () => {
+    socket.disconnect(); // Chiudi la connessione
+    console.log('Connessione chiusa dal client.');
+  })
+*/
+</script>
+    </body>
+</html>

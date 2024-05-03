@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Socket.io</title>
+    </head>
+ 
+<body onload="showWelcomeAlert()">
+    <h1>OK Communication with socket.io!</h1>
+<!-- Form per l'invio del messaggio -->
+<form id="message-form">
+    <input type="text" id="message-input" placeholder="Inserisci il tuo messaggio " />
+    <button type="submit">Invia solo al server</button>
+    <button id="send-all">Invia Messaggio a tutti</button>
+</form>
+<ol id="msgServer"></ol>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket =io();
+    document.getElementById('send-all').addEventListener('click', function() {
+        event.preventDefault();
+            sendMessage('ALL');
+        });
+            // Aggiungi un gestore per il form di invio del messaggio
+    document.getElementById('message-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Evita il comportamento predefinito del form
+            sendMessage();
+        });
+    function sendMessage(brodcast){
+        var messageInput = document.getElementById('message-input');
+        var message = messageInput.value;
+        if (typeof brodcast === 'undefined') {
+            socket.emit('messaggio dal client', message);
+        } else { socket.emit('broadcast', message); }
+        // Invia il messaggio al server utilizzando il metodo emit()
+        
+        messageInput.value = ''; // Pulisci l'input del messaggio
+    };
+    
+   
+    socket.on('server message', function(msg) {
+        handleReceivedMessage(msg);
+    });
+    // Funzione per gestire i messaggi ricevuti dal server
+    function handleReceivedMessage(msg) {
+        var messagesList = document.getElementById('msgServer');
+        var li = document.createElement('li');
+        li.textContent = msg;
+        messagesList.appendChild(li);
+    }
+    function showWelcomeAlert() {
+    var username = prompt('BENVENUTO What\'s your username?');
+socket.emit('newbie', username);
+    }
+</script>
+</body>
+</html>

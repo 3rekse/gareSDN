@@ -1,0 +1,175 @@
+[
+  {
+    "username": "📰",
+    "real": "Marco Cattaneo",
+    "punti": 10,
+    "prove": 4,
+    "classe": "1MC",
+    "VotoPer4": 40,
+    "gara": 23
+  },
+  {
+    "username": "📐",
+    "real": "Cesare Boarolo",
+    "punti": 1.5,
+    "prove": 0,
+    "classe": "1MC",
+    "VotoPer4": 6,
+    "gara": 22
+  },
+  {
+    "username": "📌",
+    "real": "Pietro Boccaletti",
+    "punti": 1.5,
+    "prove": 0,
+    "classe": "1MC",
+    "VotoPer4": 6,
+    "gara": 22
+  },
+  {
+    "username": "📦",
+    "real": "Marco Cattaneo",
+    "punti": 1.5,
+    "prove": 0,
+    "classe": "1mc",
+    "VotoPer4": 6,
+    "gara": 22
+  },
+  {
+    "username": "📵",
+    "real": "Riccardo Meloni",
+    "punti": 1.25,
+    "prove": 1,
+    "classe": "1MC",
+    "VotoPer4": 5,
+    "gara": 23
+  },
+  {
+    "username": "📋",
+    "real": "Youssef Dahir",
+    "punti": 1,
+    "prove": 0,
+    "classe": "1MC",
+    "VotoPer4": 4,
+    "gara": 22
+  },
+  {
+    "username": "📊",
+    "real": "Riccardo Meloni",
+    "punti": 1,
+    "prove": 0,
+    "classe": "1Mc",
+    "VotoPer4": 4,
+    "gara": 22
+  },
+  {
+    "username": "📖",
+    "real": "Luca Foschi",
+    "punti": 1,
+    "prove": 2,
+    "classe": "1MC",
+    "VotoPer4": 4,
+    "gara": 22
+  },
+  {
+    "username": "📏",
+    "real": "Diego Perez",
+    "punti": 1,
+    "prove": 0,
+    "classe": "1MC",
+    "VotoPer4": 4,
+    "gara": 22
+  },
+  {
+    "username": "📝",
+    "real": "Cesare Boarolo",
+    "punti": 1,
+    "prove": 0,
+    "classe": "1mc",
+    "VotoPer4": 4,
+    "gara": 22
+  },
+  {
+    "username": "📙",
+    "real": "Achraf Sakine",
+    "punti": 1,
+    "prove": 0,
+    "classe": "1mc",
+    "VotoPer4": 4,
+    "gara": 22
+  },
+  {
+    "username": "📟",
+    "real": "Pietro Boccaletti",
+    "punti": 0.75,
+    "prove": 1,
+    "classe": "1mc",
+    "VotoPer4": 3,
+    "gara": 22
+  },
+  {
+    "username": "📡",
+    "real": "Youssef Dahir",
+    "punti": 0.75,
+    "prove": 1,
+    "classe": "1mc",
+    "VotoPer4": 3,
+    "gara": 22
+  },
+  {
+    "username": "📉",
+    "real": "Achraf Sakine",
+    "punti": 0.5,
+    "prove": 0,
+    "classe": "1MC",
+    "VotoPer4": 2,
+    "gara": 22
+  },
+  {
+    "username": "📗",
+    "real": "Marco Cattaneo",
+    "punti": 0.5,
+    "prove": 0,
+    "classe": "1MC",
+    "VotoPer4": 2,
+    "gara": 22
+  },
+  {
+    "username": "📣",
+    "real": "Ergi Demaj",
+    "punti": 0.5,
+    "prove": 0,
+    "classe": "1mc",
+    "VotoPer4": 2,
+    "gara": 22
+  },
+  {
+    "username": "📢",
+    "real": "Samuele Bruzzese",
+    "punti": -0.25,
+    "prove": 3,
+    "classe": "1mc",
+    "VotoPer4": -1,
+    "gara": 22
+  },
+  {
+    "username": "📶",
+    "real": "Brigel Tanku",
+    "punti": -2.25,
+    "prove": 13,
+    "classe": "1MC",
+    "VotoPer4": -9,
+    "gara": 23
+  },
+  {
+    "username": "📒",
+    "real": "Brigel Tanku",
+    "punti": -2.5,
+    "prove": 12,
+    "classe": "1MC",
+    "VotoPer4": -10,
+    "gara": 22
+  }
+]}
+] }
+]

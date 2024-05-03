@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Conversione Decimale Binario !</title>
+        <style>
+            #zone_chat strong {
+                color: white;
+                background-color: black;
+                padding: 2px;
+            }
+            #canvas-container {
+      position: relative;
+    }
+
+    #myCanvas {
+      background-color: #b4d7dd;
+      border: 1px solid rgb(1, 25, 156);
+    }
+    .lista {
+      left: 300px;
+      text-align: right;
+    }
+    .overlay-section {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      background-color: rgba(122, 166, 247, 0.1); /* Sfondo semitrasparente */
+      padding: 20px;
+      z-index: 1; /* Sovrapposizione sopra il canvas */
+    }
+    </style>
+    </head>
+ 
+<body>
+    <div id="canvas-container">
+            <canvas id="myCanvas" width="100" height="100"></canvas>
+            <section class="overlay-section">
+                <h1 id="intesta">Conversione numeri naturali da s.d.n. </h1>
+                <h3> decimale 0, 1, 2, 3, 4, 5, 6, 7, 8, 9</h3>
+                <h3>a binario 0, 1</h3>
+                <h3> ottale 0, 1, 2, 3, 4, 5, 6, 7</h3>
+                <h3>esadecimale 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F </h3>
+
+                <form action="/" method="post" id="chat_start">
+                    <input type="text" name="numero" id="num" placeholder="dammi un numero " size="25" autofocus />
+                    <input type="submit" id="invia" value="Passo 1" />
+                    </form>
+
+        
+                <section id="chat_zone">
+                    
+                </section>
+            </section>
+    </div>
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+const canvas = document.getElementById("myCanvas");
+const context = canvas.getContext("2d");
+
+function drawCharacter() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.font = "60px Arial";
+    context.fillText(String.fromCodePoint( 127789+ Math.floor(Math.random() * 100)),25, 75);
+}
+let xx=0, r2=0, r1=0 , c2='';    
+let passo=1;
+setInterval(drawCharacter, 5000); // Esegui ogni 5 secondi
+let numconv=0;
+
+function ottoEsa(num,conv){
+  $(`#${numconv}`).prepend(`<input type="submit" id="otto${conv}" value="8 Ottale" />`);
+  $(`#${numconv}`).prepend(`<input type="submit" id="esa${conv}" value="16 Esadecimale" />`);
+        
+  $(`#esa${conv}`).click(function () {
+    $(`#${conv}`).append(`<br>Ragruppo a 4 bit e uso tabella <a href="http://http://fabrizio.phpnet.us/Sistemi_di_numerazione/17.html" target="_blank">T4b</a>  ${(num<0?parseInt($(`#c2${conv}`).text(),2):num).toString(16)}<sub>16</sub>`);
+    return false; 
+  });
+
+  $(`#otto${conv}`).click(function () {
+    $(`#${conv}`).append(`<br>Ragruppo a 3 bit e uso tabella <a href="http://http://fabrizio.phpnet.us/Sistemi_di_numerazione/17.html" target="_blank">T3b</a> ${(num<0?parseInt($(`#c2${conv}`).text(),2):num).toString(8)}<sub>8</sub>`);
+    return false; 
+  });
+}
+
+$("#invia").click(function () {
+
+    let numero = parseInt($('#num').val());
+    if (interoPositivo(numero)==0 && numero<0){
+        let bin= $(`#${numconv}`).text();
+        bin=bin.substring(0,bin.length-3); 
+        c2="";
+        comp=false;
+        for (var i = bin.length-1; i >= 0; i--) {
+          if (comp)
+            c2= (bin.charAt(i)=='0'?'1':'0') +c2;
+          else {
+            c2= bin.charAt(i)+c2;
+            comp= (bin.charAt(i)=='1');
+          }
+        }   
+        c2='1'.repeat((numero>-(2**7+1)?8:16)-c2.length)+c2;   
+        $(`#${numconv}`).append(`<br>numero negativo APPLICA Complemento a 2 <span id="c2${numconv}">${c2}</span> <sub>c2</sub>`);
+      }
+    return false;  
+});  
+
+function interoPositivo(numero) {
+    if (isNaN(numero)  || !Number.isInteger(numero)) {
+       $('#chat_zone').prepend('<p>SPIACENTE Non è stato inserito un numero naturare </p>');
+    }else{ if (passo == 1)
+          { xx= (numero<0?-numero:numero) ;
+            $("#intesta").text(numero<0?"Conversione numeri interi relativi ℤ da s.d.n."
+            :"Conversione numeri naturali ℕ da s.d.n.");
+            $("#invia").val("Next");
+            $("#invia").removeClass("off"); 
+            $('#chat_zone').prepend(`<ol id=ol${numconv} class="lista" ></ol>`);
+            $('#chat_zone').prepend(`<p id="mds" class="lista" >Applica il metodo delle divisioni successive  <br>Dividi per 2 e raccogli i resti &#x21D1;<p id=${numconv} class="lista"> <sub>2</sub> </p></p>`);
+          }
+          if (xx ==0){ 
+            ottoEsa(numero,numconv);           
+            $("#invia").val("Ripeti");
+            $('#chat_zone').prepend(`<p>HAI RAGGINTO lo 0  - IL METODO per ${numero}<sub>10</sub> Termina - Inserisci un nuovo numero </p>`);
+            $("#invia").addClass("off")
+            passo=1;
+            numconv++;
+          }else{
+            r2=xx%2;
+            $(`#ol${numconv}`).append(`<li id=${numconv}p${passo}> </li>`);
+            r1=Math.floor(xx/2);
+            $(`#${numconv}p${passo}`).append(`${xx} : 2 = ${r1}  resto: ${r2}`);
+            $(`#${numconv}`).prepend(r2);
+            passo++;
+            xx=r1;
+        }
+    }  
+    return(xx);
+} 
+function appendLi(testo,tag,idx){
+    if (idx < testo.length) {
+        tag.textContent += testo.charAt(idx);
+        setTimeout(appendLi(testo,tag,++idx), 1000); // Imposta il ritardo tra i caratteri (in millisecondi)
+      }
+}
+</script>
+</body>
+</html>

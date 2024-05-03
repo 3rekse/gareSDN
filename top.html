@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Binary Challenge!</title>
+        <style>
+            .us-input {
+    user-select: none;
+}
+            #zone_chat strong {
+                color: white;
+                background-color: black;
+                padding: 2px;
+            }
+            #canvas-container { position: relative;    }
+            #chat_start strong {
+               
+      background-color: rgba(122, 247, 132, 0.1); /* Sfondo semitrasparente */
+      padding: 20px;
+                color: white;
+                background-color: black;
+                padding: 2px;
+            }
+
+    #myCanvas {
+      background-color: #b4d7dd;
+      border: 1px solid rgb(1, 25, 156);
+    }
+    button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button.off {
+    background-color: red;
+}
+    .overlay-section {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      background-color: rgba(122, 166, 247, 0.1); /* Sfondo semitrasparente */
+      padding: 20px;
+      z-index: 1; /* Sovrapposizione sopra il canvas */
+    }
+        </style>
+    </head>
+ 
+    <body>
+      
+          <h1>Binary HIT Challenge!</h1>     
+                <section id="chat_zone">
+                    
+                </section>
+            </section>
+        
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+       let socket = io(); // Connette al server Socket.io
+ // Imposta il font e il colore del testo
+            context.font = "10px Arial";
+            context.fillStyle = "blue";
+
+            // When a message is received it's inserted in the page
+socket.on('new_top', function(data) {
+                if (data.liv==livello) {
+                inserthit(data);}
+            })
+
+socket.emit('new_top');             
+            // Adds a message to the page
+function inserthit(username, message,punti) {
+                $('#chat_zone').prepend('<p><strong>' + username + '</strong> ' + message +' '+punti +'</p>');
+            }          
+</script>
+    </body>
+</html>

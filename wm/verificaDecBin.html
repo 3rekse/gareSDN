@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verifica sistemi di numerazione  </title>
+    <meta name="resource-type" value="document">
+    <meta name="description" value="Quiz">
+    <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Leckerli+One" rel="stylesheet">
+    
+    <style>
+        input[type=text]:enabled {
+            background: #ffff00;
+            text-align:end;
+            font-family:  sans-serif;
+        }
+        input[type=text]:disabled {
+            background: #000000;
+            color:#eef1ed;
+            text-align:end;
+            font-family:  sans-serif;
+        }
+       
+        
+        .poi { 
+       /* visibility: hidden */
+        }
+    </style>
+    <script language="JavaScript">
+        function newrand() {
+            limit= parseInt(document.getElementById("limit").value)-1;
+            if (limit<1) {
+                  alert("PRIMA DI PROCEDERE LEGGI LE ISTRUZIONI ");
+            }
+            else{
+               /*  do {
+                   xnum=Math.ceil(Math.random()*Math.pow(10,limit));
+                }while(xnum<Math.pow(10,limit/2)); */
+                xnum=Math.pow(10,limit)+Math.ceil(Math.random()*Math.pow(10,limit));
+                document.getElementById("x1").value=xnum;
+                document.getElementById("x1").size=xnum.toString().length;
+                document.getElementById("r1").value="";
+		        document.getElementById("r1").size=Decimal_to_binary(xnum).length;
+                /*do {
+                   xnum=Math.ceil(Math.random()*Math.pow(10,limit));
+                }while(xnum<Math.pow(10,limit/2)); */
+                  xnum=Math.pow(4,limit)+Math.ceil(Math.random()*Math.pow(4,limit));
+                document.getElementById("x2").value=Decimal_to_binary(xnum);
+    		    document.getElementById("x2").size=Decimal_to_binary(xnum).length;
+                document.getElementById("r2").value="";
+		        document.getElementById("r2").size=xnum.toString().length;
+                document.getElementById("r1").disabled=false;
+                document.getElementById("r2").disabled=false;
+                document.getElementById("ch1").disabled=false;
+                document.getElementById("ch2").disabled=false;
+                document.getElementById("gu1").disabled=false;
+                document.getElementById("gu2").disabled=false;
+                document.getElementById("o1").disabled=false;
+                document.getElementById("o1").value="";
+                document.getElementById("o1").size=1 + ~~(document.getElementById("r1").size / 3);
+                document.getElementById("o2").disabled=false;
+                document.getElementById("o2").value="";
+                document.getElementById("o2").size=1 + ~~(document.getElementById("x2").size / 3);
+                document.getElementById("e1").disabled=false;
+                document.getElementById("e1").value="";
+                document.getElementById("e1").size=1 + ~~(document.getElementById("r1").size / 4);
+                document.getElementById("e2").disabled=false;
+                document.getElementById("e2").value="";
+                document.getElementById("e2").size=1 + ~~(document.getElementById("x2").size / 4);    
+                
+                /*            if (limit>2) {
+                  
+                  arr= document.getElementsByClassName("poi");
+                  for (i = 0; i < arr.length; i++) {
+                      arr[i].style.visibility = "visible";}
+                }
+                else{
+                 arr= document.getElementsByClassName("poi");
+                  for (i = 0; i < arr.length; i++) {
+                      arr[i].style.visibility = "hidden";}
+                } */
+            }
+        }
+        function Decimal_to_binary(x) {
+            //document.forms[0].elements[which+1].disabled="disabled";
+            return Number(x).toString(2);
+        }
+        function Binary_to_decimal(x) {
+            return parseInt(x,2);//document.forms[1].elements[1].value=y;
+        }
+        function answer1() {
+            limit= parseInt(document.getElementById("limit").value);
+            correct=parseInt(document.getElementById("x1").value);
+            if (correct == Binary_to_decimal(document.getElementById("r1").value)&& ((correct ==parseInt(document.getElementById("e1").value,16) && correct ==parseInt(document.getElementById("o1").value,8)))){
+                document.getElementById("r1").disabled="disabled";
+                document.getElementById("e1").disabled="disabled";
+                document.getElementById("o1").disabled="disabled";
+                document.getElementById("ch1").disabled="disabled";
+                document.getElementById("gu1").disabled="disabled";
+                document.getElementById("limit").value= limit+1;
+                alert("Correct! BRAVO   \nIn DECIMALE :"+correct.toString()+"\nIn BINARIO     :"+correct.toString(2)+"\nIn OTTALE      :"+correct.toString(8)+ "\nIn ESADECIMALE :"+correct.toString(16));
+                document.getElementById("cl").disabled=false;
+                document.getElementById("co").disabled=false;
+                if (!document.getElementById("no").disabled)
+                  document.getElementById("voto").innerHTML = "Il tuo voto è "+(limit).toString();
+                
+                
+            }
+            else {
+                document.getElementById("limit").value= limit-1;      
+                alert("ERRORE ! RIPROVA .");
+                if (!document.getElementById("co").disabled&&
+                !document.getElementById("cl").disabled&&
+                !document.getElementById("no").disabled
+                )
+                  document.getElementById("voto").innerHTML ="Il tuo voto è "+(limit-1).toString();
+           
+            }
+        }
+        function answer2() {
+            limit= parseInt(document.getElementById("limit").value);
+            correct=parseInt(document.getElementById("x2").value,2);
+            if (correct == parseInt(document.getElementById("r2").value) && ( (correct ==parseInt(document.getElementById("e2").value,16) && correct ==parseInt(document.getElementById("o2").value,8)))){
+                document.getElementById("limit").value= limit+1;
+                document.getElementById("r2").disabled="disabled";
+                document.getElementById("ch2").disabled="disabled";
+                document.getElementById("gu2").disabled="disabled";
+                document.getElementById("e2").disabled="disabled";
+                document.getElementById("o2").disabled="disabled";
+                alert("Correct! BRAVO   \nIn DECIMALE :"+correct.toString()+"\nIn BINARIO     :"+correct.toString(2)+"\nIn OTTALE      :"+correct.toString(8)+ "\nIn ESADECIMALE :"+correct.toString(16));
+                document.getElementById("cl").disabled=false;
+                document.getElementById("no").disabled=false;
+                if (!document.getElementById("co").disabled)
+                  document.getElementById("voto").innerHTML = "Il tuo voto è "+(limit).toString();
+            }
+            else {
+                document.getElementById("limit").value= limit-1;
+                if (!document.getElementById("co").disabled&&
+                !document.getElementById("cl").disabled&&
+                !document.getElementById("no").disabled
+                )
+                  document.getElementById("voto").innerHTML ="Il tuo voto è "+(limit-1).toString();
+                
+                alert("ERRORE ! RIPROVA .");
+            }
+        }
+        function give1() {
+            correct=parseInt(document.getElementById("x1").value);
+            limit= parseInt(document.getElementById("limit").value);
+            document.getElementById("limit").value= limit-1;
+            document.getElementById("r1").disabled=true;
+            document.getElementById("r1").value=correct.toString(2);
+            document.getElementById("ch1").disabled=true;
+            document.getElementById("gu1").disabled=true;
+            document.getElementById("e1").disabled=true;
+            document.getElementById("o1").disabled=true;
+           
+            alert("HOPSSSS  \nIn DECIMALE :"+correct.toString()+"\nIn BINARIO     :"+correct.toString(2)+"\nIn OTTALE      :"+correct.toString(8)+ "\nIn ESADECIMALE :"+correct.toString(16));
+             if (!document.getElementById("co").disabled&&
+                !document.getElementById("cl").disabled&&
+                !document.getElementById("no").disabled
+                )
+                  document.getElementById("voto").innerHTML ="Il tuo voto è "+(limit-1).toString();
+        }
+        function give2() {
+            correct=parseInt(document.getElementById("x2").value,2);
+            limit= parseInt(document.getElementById("limit").value);
+            document.getElementById("limit").value= limit-1;            document.getElementById("r2").disabled=true;
+            document.getElementById("r2").value=correct.toString();
+            document.getElementById("ch2").disabled=true;
+            document.getElementById("gu2").disabled=true;
+            document.getElementById("e2").disabled=true;
+            document.getElementById("o2").disabled=true;
+            
+            alert("HOPSSSS  \nIn Binario :"+correct.toString(2)+"\nIn DECIMALE :"+correct.toString()+"\nIn OTTALE      :"+correct.toString(8)+ "\nIn ESADECIMALE :"+correct.toString(16));
+             if (!document.getElementById("co").disabled&&
+                !document.getElementById("cl").disabled&&
+                !document.getElementById("no").disabled
+                )
+                  document.getElementById("voto").innerHTML ="Il tuo voto è "+(limit-1).toString();
+        }
+    </script>
+</head>
+<body onload="newrand();" style="text-align:center; background-color:rgb(9, 9, 9); FONT-SIZE: 15px; color: rgb(200,200,200);">
+
+    <h3>
+        <font color="RED">VERIFICA : SISTEMI DI NUMERAZIONE </font>
+        Prova per IL :<input  id="limit" type="text" disabled="disabled" size="6" value="6"> come VOTO
+
+    </h3>
+    Cognome:  <input id="co" type="text" disabled="disabled" size="10" value="">
+    Nome:  <input id="no" type="text" disabled="disabled" size="10" value="">
+    Classe :  <input id="cl" type="text" disabled="disabled" size="10" value=""><br/>
+    <hr>
+    <p id="voto">     voto  </p>
+    <form>
+        <p>Converti il valore decimale:
+            <input id="x1" type="text" disabled="disabled" size="10" value="">
+            <sub>(10)</sub><br>nel valore binario:
+            <input id="r1" type="text" size="50">
+            <sub>(2)</sub><br>nel valore esadecimale:
+            <input class="poi" id="e1" type="text" size="10">
+            <sub class="poi" >(16)</sub>
+            <br>nel valore ottale:
+            <input class="poi" id="o1" type="text" size="10">
+            <sub class="poi">(8)</sub><br/>Scrivi tua risposta  e.... click on
+            <input id="ch1" value="Check Risposta 1" onclick="answer1();" type="button"><br>
+            PER UN AIUTO click on
+            <input id="gu1" value="Give Up" onclick="give1();" type="button">
+            <br>
+            <br/><br/>
+            Converti il valore in binario :
+
+            <input id="x2" type="text" disabled="disabled" size="50" value="">
+            <sub>(2)</sub><br>nel valore decimale:
+            <input id="r2" type="text" size="10" value="">
+            <sub>(10)</sub><br/>nel valore esadecimale:
+            <input class="poi" id="e2" type="text" size="1">
+            <sub class="poi" >(16)</sub>
+            <br>nel valore ottale:<input class="poi" id="o2" type="text" size="1">
+            <sub class="poi">(8)</sub>
+            <br>
+            <input id="ch2" value="Check Risposta 2" onclick="answer2();" type="button">
+            <input id="gu2" value="Give Up" onclick="give2();" type="button">
+            <br><br/>
+            To test yourself again, click on the
+            <input value="New Quiz" onclick="newrand();" type="button">button.
+            <br>
+        </p>
+    </form>
+</body>
+</html>
