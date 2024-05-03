@@ -5,7 +5,7 @@
   "main": "appX.js",
   "scripts": {
     "test": "nodemon nodemon --ext js appX.js",
-    "start": "node index0.js"
+    "start": "node appX.js"
   },
   "author": "",
   "license": "ISC",

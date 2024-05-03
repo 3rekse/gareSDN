@@ -58,7 +58,7 @@ const os = require('os');
 //const filePath = path.join(__dirname, 'indexChat.html');
 const htmlChat = fs.readFileSync('./indexChat.html', 'utf8');
   // Sostituisci il segnaposto con l'indirizzo del server
-const updatedChat = htmlChat.replace('__SERVER_ADDRESS__', 'garasdn.glitch.me:'+(process.env.PORT || 11911));
+const updatedChat = htmlChat.replace('__SERVER_ADDRESS__', 'garasdn.glitch.me:3001');
 const cors = require('cors'); // Importa il middleware CORS
 
 const app = express();
@@ -453,8 +453,8 @@ io.sockets.on('connection', function (socket) {
         });
     });
     
-    server.listen(process.env.PORT || 11911, () => {
-    console.log('Server avviato. Accedi all\'URL http://localhost:' + (process.env.PORT || 11911));
+    server.listen( () => {
+   console.log('Server avviato. Accedi all\'URL http://localhost:' + (process.env.PORT || 11911));
 });
     
     
