@@ -166,7 +166,7 @@ io.sockets.on('connection', function (socket) {
     // Quando il nome utente viene ricevuto, viene memorizzato come variabile di sessione e notificato agli altri partecipanti
     socket.on('new_client', function(newname) {     
         const username = ent.encode(newname.username);
-        classe=ent.encode(newname.classe); 
+        const classe=ent.encode(newname.classe); 
         let myid = socket.id;
         console.log(`Client cID ${myid} `);
         console.log(`${username} si è unito alla clesse ${classe} `);
@@ -359,18 +359,18 @@ io.sockets.on('connection', function (socket) {
         
        //       
        console.log('Aggiorno iscritti ');
-        if (iscritti.get(classe).get(myid)){
-            let iscritto = iscritti.get(classe).get(myid);
+        if (iscritti.get(socket.classe).get(myid)){
+            let iscritto = iscritti.get(socket.classe).get(myid);
             iscritto.punti = socket.punti;
             iscritto.prove= socket.prove;
             iscritto.livello= socket.livello;
             iscritto.classe=socket.classe;    
             iscritto.VotoPer4= (2*socket.punti-socket.prove);
-            fs.writeFile('gara'+gare+'_'+classe+'.json', JSON.stringify(Object.fromEntries(iscritti.get(classe)), null, 2), 'utf-8', (err) => {
+            fs.writeFile('gara'+gare+'_'+socket.classe+'.json', JSON.stringify(Object.fromEntries(iscritti.get(socket.classe)), null, 2), 'utf-8', (err) => {
                 if (err) {
                     console.error('Errore durante il salvataggio del file:', err);
                 } else {
-                    console.log('Save : '+gare+'_'+classe+'.json');
+                    console.log('Save : '+gare+'_'+socket.classe+'.json');
                 }
             });
         }else{console.log('Non iscritto' )}  
