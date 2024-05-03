@@ -7,8 +7,8 @@
 
 // Importa i moduli necessari
 const express = require('express');
-http = require('http');
-socketIo = require('socket.io');
+const http = require('http');
+const socketIo = require('socket.io');
 const { Mutex } = require('async-mutex');
 
 // Creazione di un mutex
@@ -42,23 +42,23 @@ async function socketMulticast(socketMappa,titolo,msqemit) {
 // Array per memorizzare le variabili dei socket
 //  const socketVariables = [];
 
-ent = require('ent'), // Blocca i caratteri HTML (equivalente di htmlentities in PHP)
+const ent = require('ent'), // Blocca i caratteri HTML (equivalente di htmlentities in PHP)
 fs = require('fs');
 
 const os = require('os');
 
 // Ottieni l'indirizzo IP locale (IPv4)
-const serverIpAddress = Object.values(os.networkInterfaces())
+/* const serverIpAddress = Object.values(os.networkInterfaces())
   .flat()
   .filter(details => details.family === 'IPv4' && !details.internal)
   .map(details => details.address)[0];
-
-console.log(`Indirizzo IP locale del server: http://${serverIpAddress}`);
+*/
+//console.log(`Indirizzo IP locale del server: http://${serverIpAddress}`);
 
 //const filePath = path.join(__dirname, 'indexChat.html');
-const htmlChat = fs.readFileSync(__dirname + '/indexChat.html', 'utf8');
+const updatedChat = fs.readFileSync('/indexChat.html', 'utf8');
   // Sostituisci il segnaposto con l'indirizzo del server
-const updatedChat = htmlChat.replace('__SERVER_ADDRESS__', serverIpAddress);
+//const updatedChat = htmlChat.replace('__SERVER_ADDRESS__', serverIpAddress);
 const cors = require('cors'); // Importa il middleware CORS
 
 const app = express();
@@ -67,9 +67,9 @@ const app = express();
 app.use(cors());
 // Crea un'app Express e un server HTTP
 
-server = http.createServer(app),
+const server = http.createServer(app),
 io = socketIo(server);
-let gare=0; userSimbol =127789;
+let gare=0, userSimbol =127789;
 let saltaLiv=[99,21,23,25,27]; // cambia tipi di esercizio 
 fs.access('config.json', fs.constants.F_OK, function(err) {
     if (err) {
@@ -165,7 +165,7 @@ io.sockets.on('connection', function (socket) {
     // Gestisci l'evento 'join' quando un client si unisce alla chat
     // Quando il nome utente viene ricevuto, viene memorizzato come variabile di sessione e notificato agli altri partecipanti
     socket.on('new_client', function(newname) {     
-        username = ent.encode(newname.username);
+        const username = ent.encode(newname.username);
         classe=ent.encode(newname.classe); 
         let myid = socket.id;
         console.log(`Client cID ${myid} `);

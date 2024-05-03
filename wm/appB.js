@@ -24,7 +24,7 @@ console.log(`Indirizzo IP locale del server: ${serverIpAddress}`);
 //const filePath = path.join(__dirname, 'indexChat.html');
 const htmlChat = fs.readFileSync(__dirname + '/indexChat.html', 'utf8');
   // Sostituisci il segnaposto con l'indirizzo del server
-const updatedChat = htmlChat.replace('__SERVER_ADDRESS__', serverIpAddress);
+const updatedChat = htmlChat.replace('__SERVER_ADDRESS__', 'http://garasdn.glitch.me/');
 const cors = require('cors'); // Importa il middleware CORS
 
 const app = express();
@@ -396,7 +396,8 @@ io.sockets.on('connection', function (socket) {
     
     
     // Avvia il server sulla porta 8080
-    server.listen(11911, () => {
-        console.log('Server avviato. Accedi all\'URL http://localhost:11911/');
+     
+    server.listen(process.env.PORT || 11911, () => {
+    console.log('Server avviato. Accedi all\'URL http://localhost:' + (process.env.PORT || 11911));
     });
     
