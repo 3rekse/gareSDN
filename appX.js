@@ -55,12 +55,10 @@ const os = require('os');
  // .filter(details => details.family === 'IPv4' && !details.internal)
  // .map(details => details.address)[0];
 
-console.log(`Indirizzo IP locale del server: http://${serverIp}`);
-
 //const filePath = path.join(__dirname, 'indexChat.html');
 const htmlChat = fs.readFileSync('./indexChat.html', 'utf8');
   // Sostituisci il segnaposto con l'indirizzo del server
-const updatedChat = htmlChat.replace('__SERVER_ADDRESS__',  serverIp +':3000');
+let updatedChat = htmlChat;
 const cors = require('cors'); // Importa il middleware CORS
 
 const app = express();
@@ -460,6 +458,10 @@ io.sockets.on('connection', function (socket) {
 dns.lookup('garasdn.glitch.me', (err, serverIpAddress, family) => {
    
   console.log('Indirizzo IP: %s famiglia: IPv%s',  serverIpAddress , family);
+  const htmlChat = fs.readFileSync(__dirname + '/indexChat.html', 'utf8');
+  // Sostituisci il segnaposto con l'indirizzo del server
+  updatedChat = htmlChat.replace('__SERVER_ADDRESS__', serverIpAddress);
+  fs.writeFileSync(__dirname + '/indexChatIp.html', updatedChat, 'utf8');
   server.listen( () => {
    console.log('Server avviato. Accedi all\'URL http://'+ serverIpAddress +":" + (process.env.PORT || 11911));
 });
