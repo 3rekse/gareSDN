@@ -48,13 +48,13 @@ fs = require('fs');
 const os = require('os');
 
 // Ottieni l'indirizzo IP locale (IPv4)
-var serverIp="34.226.28.41";
+
 
 //= Object.values(os.networkInterfaces())
   //.flat()
  // .filter(details => details.family === 'IPv4' && !details.internal)
  // .map(details => details.address)[0];
-console.log(serverIp);
+
 console.log(`Indirizzo IP locale del server: http://${serverIp}`);
 
 //const filePath = path.join(__dirname, 'indexChat.html');
@@ -456,14 +456,13 @@ io.sockets.on('connection', function (socket) {
     });
     const dns = require('dns');
 // Ottieni l'indirizzo IP locale (IPv4)
-var serverIpAddress ;
-dns.lookup('garasdn.glitch.me', (err, address, family) => {
-   serverIpAddress= address;
-  console.log('Indirizzo IP: %s famiglia: IPv%s',  serverIpAddress , family);
 
-});
-    server.listen( () => {
+dns.lookup('garasdn.glitch.me', (err, serverIpAddress, family) => {
+   
+  console.log('Indirizzo IP: %s famiglia: IPv%s',  serverIpAddress , family);
+  server.listen( () => {
    console.log('Server avviato. Accedi all\'URL http://'+ serverIpAddress +":" + (process.env.PORT || 11911));
 });
+    });
     
     
