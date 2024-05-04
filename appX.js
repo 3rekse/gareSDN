@@ -460,11 +460,12 @@ dns.lookup('garasdn.glitch.me', (err, serverIpAddress, family) => {
   console.log('Indirizzo IP: %s famiglia: IPv%s',  serverIpAddress , family);
   const htmlChat = fs.readFileSync(__dirname + '/indexChat.html', 'utf8');
   // Sostituisci il segnaposto con l'indirizzo del server
-  updatedChat = htmlChat.replace('__SERVER_ADDRESS__', serverIpAddress);
+  updatedChat = htmlChat.replace('__SERVER_ADDRESS__', serverIpAddress+":" + (process.env.PORT || 11911));
   fs.writeFileSync(__dirname + '/indexChatIp.html', updatedChat, 'utf8');
   server.listen( () => {
    console.log('Server avviato. Accedi all\'URL http://'+ serverIpAddress +":" + (process.env.PORT || 11911));
 });
+  console.log( updatedChat );
     });
     
     
