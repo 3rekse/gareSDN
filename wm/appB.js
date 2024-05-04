@@ -24,6 +24,11 @@ console.log(`Indirizzo IP locale del server: ${serverIpAddress}`);
 //const filePath = path.join(__dirname, 'indexChat.html');
 const htmlChat = fs.readFileSync(__dirname + '/indexChat.html', 'utf8');
   // Sostituisci il segnaposto con l'indirizzo del server
+const dns = require('dns');
+
+dns.lookup('garasdn.glitch.me', (err, address, family) => {
+  console.log('Indirizzo IP: %j famiglia: IPv%s', address, family);
+});
 const updatedChat = htmlChat.replace('__SERVER_ADDRESS__', 'http://garasdn.glitch.me/');
 const cors = require('cors'); // Importa il middleware CORS
 
