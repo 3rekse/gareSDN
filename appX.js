@@ -46,25 +46,21 @@ const ent = require('ent'), // Blocca i caratteri HTML (equivalente di htmlentit
 fs = require('fs');
 
 const os = require('os');
-const dns = require('dns');
-// Ottieni l'indirizzo IP locale (IPv4)
-var serverIpAddress 
-dns.lookup('garasdn.glitch.me', (err, address, family) => {
-   serverIpAddress= address;
-  console.log('Indirizzo IP: %s famiglia: IPv%s',  serverIpAddress , family);
 
-});
+// Ottieni l'indirizzo IP locale (IPv4)
+var serverIp="34.226.28.41";
+
 //= Object.values(os.networkInterfaces())
   //.flat()
  // .filter(details => details.family === 'IPv4' && !details.internal)
  // .map(details => details.address)[0];
-console.log(serverIpAddress);
-console.log(`Indirizzo IP locale del server: http://${serverIpAddress}`);
+console.log(serverIp);
+console.log(`Indirizzo IP locale del server: http://${serverIp}`);
 
 //const filePath = path.join(__dirname, 'indexChat.html');
 const htmlChat = fs.readFileSync('./indexChat.html', 'utf8');
   // Sostituisci il segnaposto con l'indirizzo del server
-const updatedChat = htmlChat.replace('__SERVER_ADDRESS__',  serverIpAddress +':3000');
+const updatedChat = htmlChat.replace('__SERVER_ADDRESS__',  serverIp +':3000');
 const cors = require('cors'); // Importa il middleware CORS
 
 const app = express();
@@ -458,7 +454,14 @@ io.sockets.on('connection', function (socket) {
         }
         });
     });
-    
+    const dns = require('dns');
+// Ottieni l'indirizzo IP locale (IPv4)
+var serverIpAddress ;
+dns.lookup('garasdn.glitch.me', (err, address, family) => {
+   serverIpAddress= address;
+  console.log('Indirizzo IP: %s famiglia: IPv%s',  serverIpAddress , family);
+
+});
     server.listen( () => {
    console.log('Server avviato. Accedi all\'URL http://'+ serverIpAddress +":" + (process.env.PORT || 11911));
 });
