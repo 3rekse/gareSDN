@@ -47,6 +47,6 @@ io.on('connection', function(socket) {
     });
 
 // Avvia il server
-server.listen(3030, () => {
-    console.log('Server avviato. Accedi all\'URL http://localhost:3030/');
+  server.listen( () => {
+   console.log('Server avviato. Accedi all\'URL https://garasdn.glitch.me:' + (process.env.PORT || 11911));
 });

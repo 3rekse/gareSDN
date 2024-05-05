@@ -160,10 +160,6 @@ const socketMulticastMutex = (socketMappa,titolo,msqemit) => {
         io.to(socketId).emit(titolo, msqemit);
     }
 }; */
-server.listen( () => {
-   console.log('Server avviato. Accedi all\'URL https://garasdn.glitch.me:' + (process.env.PORT || 11911));
-});
-
 
 // Gestione delle connessioni dei socket
 io.sockets.on('connection', function (socket) {
@@ -459,6 +455,10 @@ io.sockets.on('connection', function (socket) {
         });
     });
 
-   
+  server.listen( () => {
+   console.log('Server avviato. Accedi all\'URL https://garasdn.glitch.me:' + (process.env.PORT || 11911));
+});
+
+ 
     
     
