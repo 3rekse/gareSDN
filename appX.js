@@ -56,15 +56,16 @@ const os = require('os');
  // .map(details => details.address)[0];
 
 //const filePath = path.join(__dirname, 'indexChat.html');
-const htmlChat = fs.readFileSync('./indexChat.html', 'utf8');
+//const htmlChat = fs.readFileSync('./indexChat.html', 'utf8');
   // Sostituisci il segnaposto con l'indirizzo del server
-let updatedChat = htmlChat;
-const cors = require('cors'); // Importa il middleware CORS
+//let updatedChat = htmlChat;
+//const cors = require('cors'); // Importa il middleware CORS
 
 const app = express();
 
 // Abilita il middleware CORS
-app.use(cors());
+//app.use(cors());
+app.use();
 // Crea un'app Express e un server HTTP
 
 const server = http.createServer(app),
@@ -110,12 +111,10 @@ app.get('/top', function (req, res) {
 });
 // Carica la pagina index.html
 app.get('/', function (req, res) {
-   // res.sendFile(__dirname + '/indexChat.html');
+    res.sendFile('./verificaDecBin.html');
       // Leggi il file HTML
-  
-
   // Invia il file HTML aggiornato al client
-  res.send(updatedChat);
+//res.send('updatedChat');
 });
 
 function inviaAttese() {
