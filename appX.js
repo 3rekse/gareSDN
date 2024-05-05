@@ -70,11 +70,7 @@ app.use(express.static('public'));
 
 const server = http.createServer(app),
 io = socketIo(server);
-
- server.listen( () => {
-   console.log('Server avviato. Accedi all\'URL https://garasdn.glitch.me:' + (process.env.PORT || 11911));
-});
-
+ 
 let gare=0, userSimbol =127789;
 let saltaLiv=[99,21,23,25,27]; // cambia tipi di esercizio 
 fs.access('config.json', fs.constants.F_OK, function(err) {
@@ -110,7 +106,7 @@ var countDown=false;
 const gara = new Map();
 const xnumgara= new Map(); 
 const iscritti= new Map(); 
-// Carica la pagina 
+/* Carica la pagina 
 app.get('/top', function (req, res) {
         res.sendFile(__dirname + '/verificaDecBin.html');
 });
@@ -121,6 +117,7 @@ app.get('/', function (req, res) {
   // Invia il file HTML aggiornato al client
 //res.send('updatedChat');
 });
+*/
 
 function inviaAttese() {
     console.log(Object.keys(gareInWait).length)
@@ -163,6 +160,11 @@ const socketMulticastMutex = (socketMappa,titolo,msqemit) => {
         io.to(socketId).emit(titolo, msqemit);
     }
 }; */
+server.listen( () => {
+   console.log('Server avviato. Accedi all\'URL https://garasdn.glitch.me:' + (process.env.PORT || 11911));
+});
+
+
 // Gestione delle connessioni dei socket
 io.sockets.on('connection', function (socket) {
     console.log(`Client con ID ${socket.id} connesso.`);
