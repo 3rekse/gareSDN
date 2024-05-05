@@ -1,105 +1,28 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Binary Challenge!</title>
-        <style>
-            .us-input {
-    user-select: none;
-}
-            #zone_chat strong {
-                color: white;
-                background-color: black;
-                padding: 2px;
-            }
-            #canvas-container { position: relative;    }
-            #chat_start strong {
-               
-      background-color: rgba(122, 247, 132, 0.1); /* Sfondo semitrasparente */
-      padding: 20px;
-                color: white;
-                background-color: black;
-                padding: 2px;
-            }
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Socket.IO Chat Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <ul class="pages">
+    <li class="chat page">
+      <div class="chatArea">
+        <ul class="messages"></ul>
+      </div>
+      <input class="inputMessage" placeholder="Type here..."/>
+    </li>
+    <li class="login page">
+      <div class="form">
+        <h3 class="title">What's your nickname?</h3>
+        <input class="usernameInput" type="text" maxlength="14" />
+      </div>
+    </li>
+  </ul>
 
-    #myCanvas {
-      background-color: #b4d7dd;
-      border: 1px solid rgb(1, 25, 156);
-    }
-    button {
-    background-color: green;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-
-button.off {
-    background-color: red;
-}
-    .overlay-section {
-      position: absolute;
-      top: 50px;
-      left: 50px;
-      background-color: rgba(122, 166, 247, 0.1); /* Sfondo semitrasparente */
-      padding: 20px;
-      z-index: 1; /* Sovrapposizione sopra il canvas */
-   
-  display: flex;
-  justify-content: space-between;
-}
-
-.left-section, .right-section {
-  flex: 1;
-  padding: 20px;
-  border: 1px solid #ddd;
-}
-
-.right-section {
-  background-color: #e0e0e0;
-}
-        </style>
-    </head>
- 
-    <body>
-        <form action="/" method="post" id="chat_start">
-            <input type="text" name="nome" id="mynome" placeholder="il tuo nome.." maxlength="10" size="15" autofocus />
-            <input type="text" name="cognome" id="mycognome" placeholder="il tuo cognome.." maxlength="10" size="15" autofocus />
-            <input type="text" name="classe" id="classe" placeholder="la tua classe.." maxlength="10" size="10" autofocus />
-            <!--input type="submit" id="invia" value="Start" /-->
-            <button type="button" id="invia">Start</button>    
-        </form>
-       
-        <div  id="canvas-container">
-            <canvas id="myCanvas" width="100" height="100"></canvas>
-           
-            <section class="overlay-section">
-                <section class="left-section" id="chat_zone">
-                <h1>Binary Challenge <span id='gara'> </span>!</h1>
-                <h2 id='avatar'></h2>
-                <p id='url'>Puoi trovare il codice Unicode del tuo avatar al seguente Url : https://www.compart.com/en/unicode/block/U+1F300 <br> ATTENZIONE non abbandonare questa pagina !!</p>
-                <form action="/" method="post" id="chat_form">
-                    <input type="text" name="message" id="message" placeholder="la tua risposta..." size="50" autofocus />
-                    <input type="submit" id="send_message" value="Invia" />
-                    <p id="boardn"></p>
-                    <p id="boardr"></p>                 
-                        <!--input type="submit" id="chiudiConnessione" value="Esci "--> 
-                </form>
-                
-                    
-                </section>
-                <section class="right-section" id="classifica">
-                    <h1>Posizioni / Voto</h1>
-                     <ol id="ol">
-                      <li id="0"></li>
-                     </ol>
-                  </section>
-    
-            </section>
-            
-
-          </div>
-
-     
-    </body>
+  <script src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
+</body>
 </html>
