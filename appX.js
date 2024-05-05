@@ -65,11 +65,16 @@ const app = express();
 
 // Abilita il middleware CORS
 //app.use(cors());
-app.use();
+app.use(express.static('public'));
 // Crea un'app Express e un server HTTP
 
 const server = http.createServer(app),
 io = socketIo(server);
+
+ server.listen( () => {
+   console.log('Server avviato. Accedi all\'URL https://garasdn.glitch.me:' + (process.env.PORT || 11911));
+});
+
 let gare=0, userSimbol =127789;
 let saltaLiv=[99,21,23,25,27]; // cambia tipi di esercizio 
 fs.access('config.json', fs.constants.F_OK, function(err) {
@@ -452,9 +457,6 @@ io.sockets.on('connection', function (socket) {
         });
     });
 
-    server.listen( () => {
-   console.log('Server avviato. Accedi all\'URL https://garasdn.glitch.me:' + (process.env.PORT || 11911));
-});
-
+   
     
     
