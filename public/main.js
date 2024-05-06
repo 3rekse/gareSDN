@@ -11,7 +11,8 @@ $(function() {
 
   // Initialize variables
   var $window = $(window);
-  var $usernameInput = $('.usernameInput'); // Input for username
+  var $usernameInput = $('#usernameInput'); // Input for username
+  
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
 
@@ -21,6 +22,7 @@ $(function() {
   // Prompt for setting a username
   var username;
   var connected = false;
+  var classe;
   var typing = false;
   var lastTypingTime;
   var $currentInput = $usernameInput.focus();
