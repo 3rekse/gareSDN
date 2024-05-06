@@ -147,3 +147,59 @@ ul {
   right: 0;
   width: 100%;
 }
+       <style>
+            .us-input {
+    user-select: none;
+}
+            #zone_chat strong {
+                color: white;
+                background-color: black;
+                padding: 2px;
+            }
+            #canvas-container { position: relative;    }
+            #chat_start strong {
+               
+      background-color: rgba(122, 247, 132, 0.1); /* Sfondo semitrasparente */
+      padding: 20px;
+                color: white;
+                background-color: black;
+                padding: 2px;
+            }
+
+    #myCanvas {
+      background-color: #b4d7dd;
+      border: 1px solid rgb(1, 25, 156);
+    }
+    button {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button.off {
+    background-color: red;
+}
+    .overlay-section {
+      position: absolute;
+      top: 50px;
+      left: 50px;
+      background-color: rgba(122, 166, 247, 0.1); /* Sfondo semitrasparente */
+      padding: 20px;
+      z-index: 1; /* Sovrapposizione sopra il canvas */
+   
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-section, .right-section {
+  flex: 1;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.right-section {
+  background-color: #e0e0e0;
+}
+     
