@@ -11,7 +11,7 @@ $(function() {
 
   // Initialize variables
   var $window = $(window);
-  var $classe = $('#classe'); // Input for username
+  var $classeInput = $('#classeInput'); // Input for username
   var $usernameInput = $('#usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
@@ -21,10 +21,11 @@ $(function() {
 
   // Prompt for setting a username
   var username;
+  var classe;
   var connected = false;
   var typing = false;
   var lastTypingTime;
-  var $currentInput = $classe.focus();
+  var $currentInput = $classeInput.focus();
 
   var socket = io();
 
@@ -38,6 +39,15 @@ $(function() {
     log(message);
   }
 
+   function setClasse () {
+        classe = cleanInput($classeInput.val().trim());
+    
+        // If the username is valid
+        if (classe) {  
+          $currentInput = $usernameInput.focus();
+        }
+      }
+  
   // Sets the client's username
   function setUsername () {
     username = cleanInput($usernameInput.val().trim());
@@ -200,13 +210,15 @@ $(function() {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
-      if (username) {
-        sendMessage();
-        socket.emit('stop typing');
-        typing = false;
-      } else {
-        setUsername();
-      }
+      if (classe) {
+                if (username) {
+                sendMessage();
+                socket.emit('stop typing');
+                typing = false;
+                } else {
+                setUsername();
+                }
+            } else {setClasse();}
     }
   });
 
