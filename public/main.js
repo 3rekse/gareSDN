@@ -10,7 +10,7 @@ $(function() {
   ];
 
   // Initialize variables
-  let $window = $(window);
+  const $window = $(window);
   let $classeInput = $('#classeInput'); // Input for username
   let $usernameInput = $('#usernameInput'); // Input for username
   let $messages = $('.messages'); // Messages area
@@ -19,6 +19,9 @@ $(function() {
   let $loginPage = $('.login.page'); // The login page
   let $chatPage = $('.chat.page'); // The chatroom page
 
+  const $canvas = document.getElementById("myCanvas");
+  const context = $canvas.getContext("2d");
+  let livello = 0;
   // Prompt for setting a username
   let username;
   let classe;
@@ -77,7 +80,8 @@ $(function() {
         message: message
       });
       // tell server to execute 'new message' and send along one parameter
-      socket.emit('new message', message);
+      socket.emit('new message',"liv:" + livello +"msg: "+message); // Sends the message to the others
+
     }
   }
 
