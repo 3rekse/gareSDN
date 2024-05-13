@@ -13,15 +13,23 @@ $(function() {
   const $window = $(window);
   let $classeInput = $('#classeInput'); // Input for username
   let $usernameInput = $('#usernameInput'); // Input for username
+  $usernameInput.hide();
   let $messages = $('.messages'); // Messages area
   let $inputMessage = $('#inputMessage'); // Input message input box
-
+  let $url = $('#url');
+ 
+  let $chat_form= $('#chat_form');
+  $chat_form.hide()
   let $loginPage = $('.login.page'); // The login page
-  let $chatPage = $('.chat.page'); // The chatroom page
+  let $chatPage = $('.chat_page'); // The chatroom page
+  let $gara = $('#gara');
 
-  const $canvas = document.getElementById("myCanvas");
+  const $canvas = $('#myCanvas')[0];
   const context = $canvas.getContext("2d");
   let livello = 0;
+  $url.hide();
+
+
   // Prompt for setting a username
   let username;
   let classe;
@@ -31,6 +39,14 @@ $(function() {
   let $currentInput = $classeInput.focus();
 
   let socket = io({autoConnect: false});
+
+  function drawCharacter() {
+    context.clearRect(0, 0, $canvas.width, $canvas.height);
+    context.font = "60px Arial";
+    context.textAlign = "center";  // Centra il testo orizzontalmente
+    context.textBaseline = "middle";  // Centra il testo verticalmente
+    context.fillText(String.fromCodePoint(127789 + Math.floor(Math.random() * 100), 127789 + Math.floor(Math.random() * 100), 127789 + Math.floor(Math.random() * 100), 127789 + Math.floor(Math.random() * 100)), $canvas.width / 2, $canvas.height / 2);
+  }
 
   function addParticipantsMessage (data) {
     let message = '';
@@ -42,14 +58,17 @@ $(function() {
     log(message);
   }
 
-   function setClasse () {
+  function setClasse () {
         classe = cleanInput($classeInput.val().trim());
     
-        // If the username is valid
+        // If the class is valid
         if (classe) {  
+          $('#titolo').text('Inserisci il tuo username');
+          $classeInput.hide();
+          $usernameInput.show();
           $currentInput = $usernameInput.focus();
         }
-      }
+  }
   
   // Sets the client's username
   function setUsername () {
@@ -61,9 +80,15 @@ $(function() {
       $chatPage.show();
       $loginPage.off('click');
       $currentInput = $inputMessage.focus();
-
-      // Tell the server your username
+      socket.connect();
+      socket.on('connect', function() {
+        // Tell the server your username
+      console.log('Connessione stabilita!');
       socket.emit('add user', username);
+      socket.emit('new_client', {username:username, classe:classe});
+      document.title = classe + ' - ' + document.title;
+
+      });
     }
   }
 
@@ -81,7 +106,12 @@ $(function() {
       });
       // tell server to execute 'new message' and send along one parameter
       socket.emit('new message',"liv:" + livello +"msg: "+message); // Sends the message to the others
-
+      
+      socket.emit('message',{liv:livello,msg: message}); 
+      $('#boardr').prepend('<p><strong>\u25BA </strong> ' + message + '</p>');
+                  
+               // insertMessage(username, message); // Also displays the message on our page
+                $('#message').val('').focus(); // Empties the chat form and puts the focus back on it
     }
   }
 
@@ -242,6 +272,10 @@ $(function() {
     $inputMessage.focus();
   });
 
+  function insertMessage(username,real, message,punti) {
+    $('#boardr').prepend('<p><strong>' + username + '</strong> '+real+' ' + message +' Punti:'+punti +'</p>');
+}
+
   // Socket events
 
   // Whenever the server emits 'login', log the login message
@@ -281,5 +315,51 @@ $(function() {
   // Whenever the server emits 'stop typing', kill the typing message
   socket.on('stop typing', function (data) {
     removeChatTyping(data);
+  });
+
+  socket.on('down',function (data){
+    console.log("down "+data);
+    context.clearRect(0, 0, $canvas.width, $canvas.height);
+    context.font = "80px Arial";
+    context.fillText(data, $canvas.width/2, $canvas.height/2);
+    if(data==0){
+      $chat_form.show();
+      $url.hide();
+      $currentInput = $inputMessage.focus();
+      setInterval(drawCharacter, 5000);
+    }
+    
+  });
+  socket.on('gara',function (data){ 
+    $gara.text('Numero '+data);
+    console.log("gara "+data);
+  });
+
+  socket.on('avatar', function(username) {
+    $('#avatar').text('Avatar :'+username.username+''+username.real);
+    $("#url").show();
+  })
+  socket.on('new_number', function(num) {
+    if(num.ok) {livello++;}
+    if(num.liv===livello)
+        {$('#boardn').html('<p class="margineZero"><em>' + num.msg+ ' </em>'+num.liv+'</p>');}
+   else {$('#boardn').html('<p class="margineZero">' + num.msg+ ' '+num.liv+'</p>');}
+  });
+  socket.on('aggiorna', function(data) {
+    console.log('aggiorna '+data);
+    console.log('$$$$'+data.real+'$$$$$');
+    if (data.liv==livello) {
+      insertMessage(data.username, data.real , data.message,data.punti);}
+      let poz=(0>data.punti?0:data.punti);
+      if (!$(`#${poz}`).length) {
+        if (!$(`#${poz-1}`).length) {$('#ol').prepend(`<li id=${poz-1}></li>`);}
+          $('#ol').prepend(`<li id=${poz}></li>`);
+      } 
+      if (!$(`#${data.username}`).length){ 
+        $(`#${poz}`).prepend('<p id='+data.username+'>'+data.username+' '+ data.real+ ' <span id=pnt'+data.username+'>'+data.punti/4+'</span></p>');
+      }else{
+        $(`#${data.username}`).appendTo(`#${poz}`);
+        $(`#${"pnt"+data.username}`).text(`${data.punti/4}`);
+      }
   });
 });

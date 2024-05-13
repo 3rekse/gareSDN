@@ -1,43 +1,48 @@
 <!doctype html>
-<html lang="en">
+<html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Socket.IO Chat Example</title>
+  <title>Binary Challenge</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <ul class="pages">
-    <li class="chat page">
-        <div  id="canvas-container">
-            <canvas id="myCanvas" width="100" height="100"></canvas>
-           
-              <section class="overlay-section">
-                <section class="left-section" id="chat_zone">
-                  <h1>Binary Challenge <span id="gara"> </span>!</h1>
-                  <h2 id="avatar"></h2>
-                  <p id="url">Puoi trovare il codice Unicode del tuo avatar al seguente Url : https://www.compart.com/en/unicode/block/U+1F300 <br> ATTENZIONE non abbandonare questa pagina !!</p>
-                  <input class="usernameInput" type="text" name="message" id="inputMessage" placeholder="la tua risposta..." size="50" autofocus />
-                  <p id="boardn">dn</p>
-                  <p id="boardr">dr</p>                 
-                        <!--input type="submit" id="chiudiConnessione" value="Esci "--> 
-                  <div class="chatArea">
-                    <ul class="messages"></ul>
-                  </div> 
-                </section>
-                <section class="right-section" id="classifica">
-                    <h1>Posizioni / Voto</h1>
-                    <ol id="ol">
-                    <li id="0"></li>
-                    </ol>
-                </section>
-              </section>
+    <li class="chat_page">
+      <header>
+        <canvas id="myCanvas" ></canvas>
+         <p class="section0">Binary Challenge <span id="gara"> </span>!</p>
+    </header>
+    <div class="container">
+      <div class="left-section" >
+                  
+        <h2 id="avatar"></h2>
+        <p id="url">Puoi trovare il codice Unicode del tuo avatar al seguente Url : https://www.compart.com/en/unicode/block/U+1F300 <br> ATTENZIONE non abbandonare questa pagina !!</p>
+       
+        <div id="chat_form"> 
+          <p id="boardn"></p>
+          <input class="usernameInput" type="text" name="message" id="inputMessage" placeholder="la tua risposta..." size="50" autofocus />
+          <p id="boardr"></p> 
         </div>
-        
+                        
+              <!--input type="submit" id="chiudiConnessione" value="Esci "--> 
+        <div class="chatArea">
+          <ul class="messages"></ul>
+        </div> 
+      </div>
+      <section class="right-section" id="classifica">
+          <h1>Posizioni / Voto</h1>
+          <ol id="ol">
+          <li id="0"></li>
+          </ol>
+      </section>
+    </div>
     </li>
     <li class="login page">
+      <h1 id="logo" >DigitBoY</h1>   
       <div class="form">
-        <h3 class="title">Qual è la tua sfida?</h3>        
-        <input  class="usernameInput" type="text" name="classe" id="classeInput" placeholder="la tua classe.." maxlength="10" size="10" pattern="[a-zA-Z0-9]+" autofocus />
+        
+        <h3 class="title" id="titolo">Codice sfida?</h3>        
+        <input  class="usernameInput" type="text" name="classe" id="classeInput" placeholder="codice sfida.." maxlength="10" size="10" pattern="[a-zA-Z0-9]+" autofocus />
         <input class="usernameInput"  type="text" id="usernameInput" maxlength="14" placeholder="il tuo nome e cognome.." autofocus />
       </div>
     </li>
