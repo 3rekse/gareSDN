@@ -2,11 +2,11 @@
   "bpD0ECc3ZEWQJMYbAAAn": {
     "username": "🍀",
     "real": "aa",
-    "punti": 5,
+    "punti": 12,
     "prove": 0,
     "classe": "MB",
-    "livello": 5,
-    "VotoPer4": 10
+    "livello": 10,
+    "VotoPer4": 24
   },
   "EpihpuSGLr3DSf9xAAAp": {
     "username": "🍁",
@@ -39,10 +39,10 @@
     "username": "🍄",
     "real": "Di Stefano",
     "punti": 20,
-    "prove": 2,
+    "prove": 3,
     "classe": "MB",
     "livello": 14,
-    "VotoPer4": 38
+    "VotoPer4": 37
   },
   "xD47-dz1mskMuycBAAAz": {
     "username": "🍅",
@@ -74,11 +74,11 @@
   "IfCcVq1SDNlYTwL_AAA3": {
     "username": "🍈",
     "real": "Rossignoli",
-    "punti": 18,
+    "punti": 22,
     "prove": 14,
     "classe": "MB",
-    "livello": 13,
-    "VotoPer4": 22
+    "livello": 15,
+    "VotoPer4": 30
   },
   "uf7_R9QR-Yq6xguRAAA5": {
     "username": "🍉",
@@ -110,11 +110,11 @@
   "87eYRVK5T0Fm5uKgAAA_": {
     "username": "🍌",
     "real": "Maschio",
-    "punti": 5,
+    "punti": 10,
     "prove": 13,
     "classe": "MB",
-    "livello": 5,
-    "VotoPer4": -3
+    "livello": 9,
+    "VotoPer4": 7
   },
   "RNxxIlaYguar3ZwZAABB": {
     "username": "🍍",
@@ -180,6 +180,14 @@
   "xQ1Xte9Rw655TjiTAABT": {
     "username": "🍖",
     "real": "Giudice",
+    "punti": 0,
+    "prove": 0,
+    "classe": "MB",
+    "livello": 0
+  },
+  "ZEKLbEPgRV8xyJzzAABV": {
+    "username": "🍗",
+    "real": "Spano",
     "punti": 0,
     "prove": 0,
     "classe": "MB",
