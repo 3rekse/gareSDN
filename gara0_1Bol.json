@@ -11,64 +11,64 @@
     "username": "🌯",
     "real": "F M",
     "punti": 7,
-    "prove": 4,
+    "prove": 5,
     "classe": "1Bol",
     "livello": 7,
-    "VotoPer4": 10
+    "VotoPer4": 9
   },
   "1jVnmEnCbfKYKJuGAAAH": {
     "username": "🌰",
     "real": "A P",
+    "punti": 14,
+    "prove": 4,
+    "classe": "1Bol",
+    "livello": 11,
+    "VotoPer4": 24
+  },
+  "cF-443-Fd22GlIXrAAAK": {
+    "username": "🌱",
+    "real": "D S",
     "punti": 12,
     "prove": 2,
     "classe": "1Bol",
     "livello": 10,
     "VotoPer4": 22
   },
-  "cF-443-Fd22GlIXrAAAK": {
-    "username": "🌱",
-    "real": "D S",
-    "punti": 5,
-    "prove": 2,
-    "classe": "1Bol",
-    "livello": 5,
-    "VotoPer4": 8
-  },
   "2anntqT74NXVB-RNAAAN": {
     "username": "🌲",
     "real": "F T",
-    "punti": 6,
-    "prove": 3,
+    "punti": 14,
+    "prove": 4,
     "classe": "1Bol",
-    "livello": 6,
-    "VotoPer4": 9
+    "livello": 11,
+    "VotoPer4": 24
   },
   "cDvZY3kFVfl8GWh1AAAM": {
     "username": "🌳",
     "real": "F C",
-    "punti": 8,
-    "prove": 11,
+    "punti": 16,
+    "prove": 12,
     "classe": "1Bol",
-    "livello": 8,
-    "VotoPer4": 5
+    "livello": 12,
+    "VotoPer4": 20
   },
   "uA4FM3LueuYcP6EqAAAP": {
     "username": "🌴",
     "real": "G C",
-    "punti": 16,
-    "prove": 4,
+    "punti": 18,
+    "prove": 5,
     "classe": "1Bol",
-    "livello": 12,
-    "VotoPer4": 28
+    "livello": 13,
+    "VotoPer4": 31
   },
   "dsmpbpD-8t5XDT6jAAAR": {
     "username": "🌵",
     "real": "D Giordano",
-    "punti": 8,
-    "prove": 4,
+    "punti": 10,
+    "prove": 6,
     "classe": "1Bol",
-    "livello": 8,
-    "VotoPer4": 12
+    "livello": 9,
+    "VotoPer4": 14
   },
   "SHAOjrJmREYNzqV_AAAT": {
     "username": "🌶",
@@ -82,10 +82,10 @@
   "Emb0vYXz4DpZA9GcAAAV": {
     "username": "🌷",
     "real": "P Gabriele",
-    "punti": 4,
+    "punti": 7,
     "prove": 6,
     "classe": "1Bol",
-    "livello": 4,
-    "VotoPer4": 2
+    "livello": 7,
+    "VotoPer4": 8
   }
 }
