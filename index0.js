@@ -12,8 +12,9 @@ const gareInRun = new Map();
 const gara = new Map();
 const xnumgara= new Map(); 
 const iscritti= new Map(); 
+const data = new Date();
 let countDown=false;
-let gare='A';
+let gare=data.toISOString();
 let userSimbol =127789;
 let saltaLiv=[99,21,23,25,27]; // cambia tipi di esercizio 
 // Routing
