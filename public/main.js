@@ -64,6 +64,7 @@ $(function() {
         // If the class is valid
         if (classe) {  
           $('#titolo').text('Inserisci il tuo username');
+          $('#top').text(classe + ' Challeng');
           $classeInput.hide();
           $usernameInput.show();
           $currentInput = $usernameInput.focus();
@@ -331,7 +332,7 @@ $(function() {
     
   });
   socket.on('gara',function (data){ 
-    $gara.text('Numero '+data);
+    $gara.text('# '+data);
     console.log("gara "+data);
   });
 
