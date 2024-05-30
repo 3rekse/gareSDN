@@ -314,7 +314,7 @@ io.on('connection', function (socket) {
         // Mappa per tenere traccia dei client connessi
         console.log(`Nuova Classe ${classe}  `);
         gara.set(classe,[new Map()]);
-        gareInWait[classe]= 30;
+        gareInWait[classe]= 60;
         if (!countDown){
            countDown=setInterval(inviaAttese, 1000);
            console.log("CountDown" );
