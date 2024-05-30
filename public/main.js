@@ -323,8 +323,8 @@ $(function() {
     context.clearRect(0, 0, $canvas.width, $canvas.height);
     // Disegna il cerchio
     context.beginPath();
-context.arc($canvas.width/2,  $canvas.height/2, 60, 0, 2 * Math.PI, false);
-context.stroke();
+    context.arc($canvas.width/2,  $canvas.height/2, 60, 0, 2 * Math.PI, false);
+  context.stroke();
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.font = "80px Arial";
