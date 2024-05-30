@@ -13,7 +13,7 @@ const gara = new Map();
 const xnumgara= new Map(); 
 const iscritti= new Map(); 
 let countDown=false;
-let gare=0;
+let gare=Date().toISOString();
 let userSimbol =127789;
 let saltaLiv=[99,21,23,25,27]; // cambia tipi di esercizio 
 // Routing
@@ -209,7 +209,7 @@ function aggiorna_iscritti(socket,myid,msg) {
     iscritto.livello = socket.livello;
     iscritto.classe = socket.classe;
     iscritto.VotoPer4 = (2 * socket.punti - socket.prove);
-    fs.writeFile('gara' + gare + '_' + socket.classe + '.json', JSON.stringify(Object.fromEntries(iscritti.get(socket.classe)), null, 2), 'utf-8', (err) => {
+    fs.writeFile('G' + gare + '_' + socket.classe + '.json', JSON.stringify(Object.fromEntries(iscritti.get(socket.classe)), null, 2), 'utf-8', (err) => {
       if (err) {
         console.error('Errore durante il salvataggio del file:', err);
       } else {
