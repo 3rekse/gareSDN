@@ -321,8 +321,15 @@ $(function() {
   socket.on('down',function (data){
     console.log("down "+data);
     context.clearRect(0, 0, $canvas.width, $canvas.height);
+    // Disegna il cerchio
+    context.beginPath();
+context.arc($canvas.width/2,  $canvas.height/2, 60, 0, 2 * Math.PI, false);
+context.stroke();
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
     context.font = "80px Arial";
     context.fillText(data, $canvas.width/2, $canvas.height/2);
+    
     if(data==0){
       $chat_form.show();
       $url.hide();
