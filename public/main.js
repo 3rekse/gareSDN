@@ -283,7 +283,7 @@ $(function() {
   socket.on('login', function (data) {
     connected = true;
     // Display the welcome message
-    let message = "Welcome to Omarillos Challenge – ";
+    let message = "Welcome to Omarillos DigitBoY Challenge – ";
     log(message, {
       prepend: true
     });

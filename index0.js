@@ -347,7 +347,7 @@ io.on('connection', function (socket) {
  //   socket.emit('new_client', {username:socket.username,classe:socket.classe,real:socket.real, punti:0});
     socket.emit('gara',gare);
     socket.emit('avatar', {username:socket.username, real:socket.real});
-    socket.emit('new_number',{ liv:socket.livello, msg :'Converti '+xnumgara.get(socket.classe)[socket.livello]+'<sub>10</sub> In binario '});
+    socket.emit('new_number',{ liv:socket.livello, msg :'Converti '+xnumgara.get(socket.classe)[socket.livello]+'<sub>10</sub> In binario per il livello '});
 });
 
   // when the client emits 'typing', we broadcast it to others
