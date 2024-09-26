@@ -283,7 +283,7 @@ $(function() {
   socket.on('login', function (data) {
     connected = true;
     // Display the welcome message
-    let message = "Welcome to Socket.IO Chat – ";
+    let message = "Welcome to Omarillos Challenge – ";
     log(message, {
       prepend: true
     });
