@@ -25,6 +25,7 @@
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: #1f2b2b;
   }
   
   ul {
@@ -171,7 +172,7 @@
     flex: 1;
     padding: 20px;
     border: 1px solid #ddd;
-    color: #f5f1f1;
+    color:#4a4949;
   }
   
   .right-section {
