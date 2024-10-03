@@ -297,7 +297,7 @@ $(function() {
   });
 socket.on('banned', function () {
     addChatMessage("BANNED");
-  disconnect
+  socket.emit('disconnect');
   
   });
   // Whenever the server emits 'user joined', log it in the chat body

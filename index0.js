@@ -221,12 +221,12 @@ function aggiorna_iscritti(socket,myid,msg) {
   console.log('Avviso tutta la classe ');
   let myclass = gara.get(socket.classe)
   for (let i = myclass.length; i > 0;) {
-    socketMulticast(gara.get(socket.classe)[--i], 'aggiorna', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: msg });
-  }
-
-  if ( socket.punti < -5) {
-    socket.emit('banned');
-    console.log('BANNED' + socket.real)
+    if(socket.punti > -5)
+    {socketMulticast(gara.get(socket.classe)[--i], 'aggiorna', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: msg });}
+    else {
+      socket.emit('banned');
+      console.log('BANNED' + socket.real)
+    }
   }
 }
 let numUsers = 0;
