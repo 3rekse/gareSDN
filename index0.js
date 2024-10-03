@@ -224,7 +224,7 @@ function aggiorna_iscritti(socket,myid,msg) {
     socketMulticast(gara.get(socket.classe)[--i], 'aggiorna', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: msg });
   }
 
-  if (socket.prove - socket.punti > 10) {
+  if ( socket.punti < -5) {
     socket.emit('banned');
     console.log('BANNED' + socket.real)
   }
