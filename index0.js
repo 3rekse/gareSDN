@@ -227,7 +227,9 @@ io.on('connection', function (socket) {
   console.log(`Client con ID ${socket.id} connesso.`);
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
-  
+    if  (socket.punti<-5)
+    { socket.emit('banned');}
+    else
    socket.broadcast.emit('new message', {
       username: socket.username,
       message: data
@@ -238,7 +240,7 @@ io.on('connection', function (socket) {
   socket.on('message', function (message) {
     let myid = socket.id;
   
-    console.log(myid);
+    console.log($myid+" Punti"+ $socket.punti );
     message = ent.encode(message.msg);
     if  (socket.punti<-5)
     { socket.emit('banned');}
