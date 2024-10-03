@@ -274,7 +274,8 @@ $(function() {
   });
 
   function insertMessage(username,real, message,punti) {
-    $('#boardr').prepend('<p><strong>' + username + '</strong> '+real+' ' + message +' Punti:'+punti +'</p>');
+    if(punti>0)
+    {$('#boardr').prepend('<p><strong>' + username + '</strong> '+real+' ' + message +' Punti:'+punti +'</p>');}
 }
 
   // Socket events
