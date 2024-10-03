@@ -295,7 +295,11 @@ $(function() {
   socket.on('new message', function (data) {
     addChatMessage(data);
   });
-
+socket.on('banned', function () {
+    addChatMessage("BANNED");
+  disconnect
+  
+  });
   // Whenever the server emits 'user joined', log it in the chat body
   socket.on('user joined', function (data) {
     log(data.username + ' joined');
