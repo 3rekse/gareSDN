@@ -239,12 +239,11 @@ io.on('connection', function (socket) {
       // Quando un messaggio viene ricevuto, il nome utente del client viene recuperato e inviato agli altri partecipanti
   socket.on('message', function (message) {
     let myid = socket.id;
-  
-    console.log($myid+" Punti"+ $socket.punti );
+    console.log(socket.punti );
     message = ent.encode(message.msg);
-    if  (socket.punti<-5)
-    { socket.emit('banned');}
-    else{ 
+ //   if  (socket.punti<-5)
+ //   { socket.emit('banned');}
+  //  else{ 
     if (condizione(message,socket)) {
       socket.punti += 1 + Math.floor(socket.livello / 8);
       xnumgara.get(socket.classe)[socket.livello] = Math.pow(2, socket.livello) + Math.floor(Math.random() * Math.pow(2, socket.livello + 1));
@@ -277,7 +276,7 @@ io.on('connection', function (socket) {
         socketMulticast(gara.get(socket.classe)[--i], 'banned', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: message });
       console.log('testo')
     }
-    }
+//    }
   });
         
        
