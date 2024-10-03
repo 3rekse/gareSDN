@@ -241,8 +241,9 @@ io.on('connection', function (socket) {
     let myid = socket.id;
     console.log(socket.punti-socket.prove );
     message = ent.encode(message.msg);
-   if  (socket.punti-socket.prove<-5)
-    { socket.emit('banned');}
+   if  ((socket.punti-socket.prove)<-5)
+    {  console.log(socket.punti-socket.prove );
+      socket.emit('banned');}
    else{ 
     if (condizione(message,socket)) {
       socket.punti += 1 + Math.floor(socket.livello / 8);
