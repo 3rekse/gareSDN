@@ -227,11 +227,12 @@ io.on('connection', function (socket) {
   console.log(`Client con ID ${socket.id} connesso.`);
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
-    // we tell the client to execute 'new message'
-    socket.broadcast.emit('new message', {
+   if  (socket.punti>-5)
+   {socket.broadcast.emit('new message', {
       username: socket.username,
       message: data
-    });
+    });}
+    else  { socket.emit('banned');}
   });
   
       // Quando un messaggio viene ricevuto, il nome utente del client viene recuperato e inviato agli altri partecipanti
