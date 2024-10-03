@@ -30,14 +30,6 @@ const { Mutex } = require('async-mutex');
 // Creazione di un mutex
 const mutex = new Mutex();
 
-const socketMulticastMutex = (socketMappa,titolo,msqemit) => {
-  // Corpo della funzione
-  console.log("#Avviso: "+titolo+'-'+msqemit + " per:" +socketMappa.size);
-  for (const [socketId] of socketMappa) {   
-    console.log(` ${socketId} .  ${msqemit.liv}`);
-      io.to(socketId).emit(titolo, msqemit);
-  }
-};
 // Funzione che utilizza il mutex
 async function socketMulticast(socketMappa,titolo,msqemit) {
   // Acquisizione del mutex
@@ -219,15 +211,14 @@ function aggiorna_iscritti(socket,myid,msg) {
     });
   } else { console.log('Non iscritto') }
   console.log('Avviso tutta la classe ');
-  let myclass = gara.get(socket.classe)
-  for (let i = myclass.length; i > 0;) {
-    if(socket.punti > -5)
+  let myclass = gara.get(socket.classe) 
+  if(socket.punti > -5)
+   for (let i = myclass.length; i > 0;) 
     {socketMulticast(gara.get(socket.classe)[--i], 'aggiorna', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: msg });}
-    else {
+  else {
       socket.emit('banned');
       console.log('BANNED' + socket.real)
     }
-  }
 }
 let numUsers = 0;
 
