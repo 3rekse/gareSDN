@@ -227,12 +227,11 @@ io.on('connection', function (socket) {
   console.log(`Client con ID ${socket.id} connesso.`);
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
-   if  (socket.punti>-5)
-   {socket.broadcast.emit('new message', {
+  
+   socket.broadcast.emit('new message', {
       username: socket.username,
       message: data
-    });}
-    else  { socket.emit('banned');}
+    });
   });
   
       // Quando un messaggio viene ricevuto, il nome utente del client viene recuperato e inviato agli altri partecipanti
@@ -241,6 +240,9 @@ io.on('connection', function (socket) {
   
     console.log(myid);
     message = ent.encode(message.msg);
+    if  (socket.punti<-5)
+    { socket.emit('banned');}
+    else{ 
     if (condizione(message,socket)) {
       socket.punti += 1 + Math.floor(socket.livello / 8);
       xnumgara.get(socket.classe)[socket.livello] = Math.pow(2, socket.livello) + Math.floor(Math.random() * Math.pow(2, socket.livello + 1));
@@ -272,6 +274,7 @@ io.on('connection', function (socket) {
       for (let i = myclass.length; i > 0;)
         socketMulticast(gara.get(socket.classe)[--i], 'banned', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: message });
       console.log('testo')
+    }
     }
   });
         
