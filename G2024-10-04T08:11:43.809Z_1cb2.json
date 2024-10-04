@@ -3,63 +3,103 @@
     "username": "🌲",
     "real": "Riccardo Ambro",
     "punti": 4,
-    "prove": 2,
+    "prove": 3,
     "classe": "1cb2",
     "livello": 4,
-    "VotoPer4": 6
+    "VotoPer4": 5
   },
   "K5Z0zDh5mLTMMXNAAAAP": {
     "username": "🌴",
     "real": "Gregory Mesiti",
-    "punti": 1,
-    "prove": 0,
+    "punti": 5,
+    "prove": 3,
     "classe": "1cb2",
-    "livello": 1,
-    "VotoPer4": 2
+    "livello": 5,
+    "VotoPer4": 7
   },
   "S_Q2Qd1ESYOF-gaQAAAR": {
     "username": "🌵",
     "real": "SamueleGrazian",
     "punti": 1,
-    "prove": 2,
+    "prove": 7,
     "classe": "1cb2",
     "livello": 1,
-    "VotoPer4": 0
+    "VotoPer4": -5
   },
   "2cYTiUdxWfTWPwhBAAAU": {
     "username": "🌶",
     "real": "Rim Hadj Fredj",
     "punti": 0,
-    "prove": 1,
+    "prove": 2,
     "classe": "1cb2",
     "livello": 0,
-    "VotoPer4": -1
+    "VotoPer4": -2
   },
   "1zCK7OULLUorlI3cAAAV": {
     "username": "🌷",
     "real": "MariagraziaGio",
-    "punti": 0,
-    "prove": 1,
+    "punti": 6,
+    "prove": 3,
     "classe": "1cb2",
-    "livello": 0,
-    "VotoPer4": -1
+    "livello": 6,
+    "VotoPer4": 9
   },
   "0FVUO9oQBl1aGPEcAAAX": {
     "username": "🌸",
     "real": "Adelaida Hysll",
-    "punti": 1,
-    "prove": 1,
+    "punti": 3,
+    "prove": 9,
     "classe": "1cb2",
-    "livello": 1,
-    "VotoPer4": 1
+    "livello": 3,
+    "VotoPer4": -3
   },
   "vfbF9_okNW08yIw_AAAZ": {
     "username": "🌹",
     "real": "Khalfadir Omai",
-    "punti": 1,
+    "punti": 5,
+    "prove": 1,
+    "classe": "1cb2",
+    "livello": 5,
+    "VotoPer4": 9
+  },
+  "ibPfGIMtz7UPK2mfAAAf": {
+    "username": "🌼",
+    "real": "Andreas",
+    "punti": 0,
     "prove": 0,
     "classe": "1cb2",
-    "livello": 1,
-    "VotoPer4": 2
+    "livello": 0
+  },
+  "LN6x3quwNKve-PSkAAAn": {
+    "username": "🍀",
+    "real": "rim",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1cb2",
+    "livello": 0
+  },
+  "j6EhdRncq_QrLyH_AAAp": {
+    "username": "🍁",
+    "real": "ade",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1cb2",
+    "livello": 0
+  },
+  "3MySoW4Y2GGqp8WAAAAr": {
+    "username": "🍂",
+    "real": "Adelaida Hysll",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1cb2",
+    "livello": 0
+  },
+  "1aL9L64gvvwtGv9kAAAv": {
+    "username": "🍃",
+    "real": "rim",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1cb2",
+    "livello": 0
   }
 }
