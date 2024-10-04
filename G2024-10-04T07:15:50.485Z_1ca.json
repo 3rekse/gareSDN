@@ -11,19 +11,19 @@
     "username": "🌮",
     "real": "Pietro Tamagni",
     "punti": 4,
-    "prove": 6,
+    "prove": 10,
     "classe": "1ca",
     "livello": 4,
-    "VotoPer4": 2
+    "VotoPer4": -2
   },
   "iPzR4fB18FTMeXQMAAAF": {
     "username": "🌯",
     "real": "Jana Mohamed",
     "punti": 3,
-    "prove": 8,
+    "prove": 9,
     "classe": "1ca",
     "livello": 3,
-    "VotoPer4": -2
+    "VotoPer4": -3
   },
   "uJhVc4Zz_rLazfb3AAAH": {
     "username": "🌰",
@@ -38,18 +38,18 @@
     "username": "🌱",
     "real": "Carlotta Marel",
     "punti": 3,
-    "prove": 2,
+    "prove": 5,
     "classe": "1ca",
     "livello": 3,
-    "VotoPer4": 4
+    "VotoPer4": 1
   },
   "03XnXDMGZIsGKEcDAAAL": {
     "username": "🌲",
     "real": "Agata Lorenzet",
-    "punti": 7,
-    "prove": 6,
+    "punti": 14,
+    "prove": 7,
     "classe": "1ca",
-    "livello": 7,
-    "VotoPer4": 8
+    "livello": 11,
+    "VotoPer4": 21
   }
 }
