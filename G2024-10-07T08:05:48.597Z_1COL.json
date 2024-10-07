@@ -45,10 +45,10 @@
   "DdDnIFbWF7lHlOuvAAAL": {
     "username": "🌲",
     "real": "Cerenzia",
-    "punti": 7,
-    "prove": 2,
+    "punti": 8,
+    "prove": 4,
     "classe": "1COL",
-    "livello": 7,
+    "livello": 8,
     "VotoPer4": 12
   },
   "P3VyepU-pwvVwg8RAAAN": {
@@ -63,10 +63,10 @@
   "XOHRGliHhek86Y6zAAAP": {
     "username": "🌴",
     "real": "Pennetta",
-    "punti": 4,
-    "prove": 3,
+    "punti": 5,
+    "prove": 5,
     "classe": "1COL",
-    "livello": 4,
+    "livello": 5,
     "VotoPer4": 5
   },
   "rKbUJzwObEcbSkG2AAAR": {
@@ -82,10 +82,10 @@
     "username": "🌶",
     "real": "Burrini",
     "punti": 14,
-    "prove": 12,
+    "prove": 13,
     "classe": "1COL",
     "livello": 11,
-    "VotoPer4": 16
+    "VotoPer4": 15
   },
   "1U6xSXLyRws1dLPqAAAV": {
     "username": "🌷",
@@ -108,11 +108,11 @@
   "0UYLlUnPpKag7CNBAAAa": {
     "username": "🌹",
     "real": "Bovio",
-    "punti": 7,
-    "prove": 6,
+    "punti": 10,
+    "prove": 7,
     "classe": "1COL",
-    "livello": 7,
-    "VotoPer4": 8
+    "livello": 9,
+    "VotoPer4": 13
   },
   "EdJMcu_g7XdBJcEIAAAd": {
     "username": "🌻",
@@ -126,11 +126,11 @@
   "OmWkmMLHJA-bHhVpAAAf": {
     "username": "🌼",
     "real": "Melis",
-    "punti": 16,
-    "prove": 6,
+    "punti": 18,
+    "prove": 7,
     "classe": "1COL",
-    "livello": 12,
-    "VotoPer4": 26
+    "livello": 13,
+    "VotoPer4": 29
   },
   "v-wjgqAw4H6uXAE5AAAh": {
     "username": "🌽",
@@ -177,6 +177,14 @@
   "89R-dNpjnK_lYP7kAABF": {
     "username": "🍏",
     "real": "Bizzaro",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1COL",
+    "livello": 0
+  },
+  "fjw0Bi6HS5N1Bb8YAABR": {
+    "username": "🍕",
+    "real": "Esposito",
     "punti": 0,
     "prove": 0,
     "classe": "1COL",
