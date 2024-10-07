@@ -81,11 +81,11 @@
   "HK4MMg8sJ-IyoDraAAAT": {
     "username": "🌶",
     "real": "Burrini",
-    "punti": 20,
-    "prove": 18,
+    "punti": 22,
+    "prove": 19,
     "classe": "1COL",
-    "livello": 14,
-    "VotoPer4": 22
+    "livello": 15,
+    "VotoPer4": 25
   },
   "1U6xSXLyRws1dLPqAAAV": {
     "username": "🌷",
@@ -108,11 +108,11 @@
   "0UYLlUnPpKag7CNBAAAa": {
     "username": "🌹",
     "real": "Bovio",
-    "punti": 12,
-    "prove": 13,
+    "punti": 14,
+    "prove": 14,
     "classe": "1COL",
-    "livello": 10,
-    "VotoPer4": 11
+    "livello": 11,
+    "VotoPer4": 14
   },
   "EdJMcu_g7XdBJcEIAAAd": {
     "username": "🌻",
@@ -126,11 +126,11 @@
   "OmWkmMLHJA-bHhVpAAAf": {
     "username": "🌼",
     "real": "Melis",
-    "punti": 22,
+    "punti": 24,
     "prove": 11,
     "classe": "1COL",
-    "livello": 15,
-    "VotoPer4": 33
+    "livello": 16,
+    "VotoPer4": 37
   },
   "v-wjgqAw4H6uXAE5AAAh": {
     "username": "🌽",
@@ -208,6 +208,14 @@
   },
   "V1qjN4HPjkzuWSMqAACH": {
     "username": "🍰",
+    "real": "Piano",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1COL",
+    "livello": 0
+  },
+  "Sxrd-k7emwNDbAbZAACl": {
+    "username": "🍿",
     "real": "Piano",
     "punti": 0,
     "prove": 0,
