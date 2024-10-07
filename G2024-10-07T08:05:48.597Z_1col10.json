@@ -2,11 +2,11 @@
   "SWCQxUzhRfBRFSzbAACL": {
     "username": "🍲",
     "real": "Piano",
-    "punti": 1,
-    "prove": 2,
+    "punti": 3,
+    "prove": 9,
     "classe": "1col10",
-    "livello": 1,
-    "VotoPer4": 0
+    "livello": 3,
+    "VotoPer4": -3
   },
   "06HDru8D72Y1JVzyAACN": {
     "username": "🍳",
@@ -16,5 +16,13 @@
     "classe": "1col10",
     "livello": 2,
     "VotoPer4": 2
+  },
+  "6vHJoFkhz4O_cfzAAACP": {
+    "username": "🍴",
+    "real": "Pennetta",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1col10",
+    "livello": 0
   }
 }
