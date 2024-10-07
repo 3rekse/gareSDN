@@ -45,11 +45,11 @@
   "DdDnIFbWF7lHlOuvAAAL": {
     "username": "🌲",
     "real": "Cerenzia",
-    "punti": 3,
+    "punti": 5,
     "prove": 2,
     "classe": "1COL",
-    "livello": 3,
-    "VotoPer4": 4
+    "livello": 5,
+    "VotoPer4": 8
   },
   "P3VyepU-pwvVwg8RAAAN": {
     "username": "🌳",
@@ -63,11 +63,11 @@
   "XOHRGliHhek86Y6zAAAP": {
     "username": "🌴",
     "real": "Pennetta",
-    "punti": 3,
+    "punti": 4,
     "prove": 2,
     "classe": "1COL",
-    "livello": 3,
-    "VotoPer4": 4
+    "livello": 4,
+    "VotoPer4": 6
   },
   "rKbUJzwObEcbSkG2AAAR": {
     "username": "🌵",
@@ -82,10 +82,10 @@
     "username": "🌶",
     "real": "Burrini",
     "punti": 14,
-    "prove": 9,
+    "prove": 11,
     "classe": "1COL",
     "livello": 11,
-    "VotoPer4": 19
+    "VotoPer4": 17
   },
   "1U6xSXLyRws1dLPqAAAV": {
     "username": "🌷",
@@ -109,28 +109,28 @@
     "username": "🌹",
     "real": "Bovio",
     "punti": 7,
-    "prove": 5,
+    "prove": 6,
     "classe": "1COL",
     "livello": 7,
-    "VotoPer4": 9
+    "VotoPer4": 8
   },
   "EdJMcu_g7XdBJcEIAAAd": {
     "username": "🌻",
     "real": "Kadisi Gabriel",
     "punti": 3,
-    "prove": 3,
+    "prove": 4,
     "classe": "1COL",
     "livello": 3,
-    "VotoPer4": 3
+    "VotoPer4": 2
   },
   "OmWkmMLHJA-bHhVpAAAf": {
     "username": "🌼",
     "real": "Melis",
-    "punti": 10,
-    "prove": 5,
+    "punti": 14,
+    "prove": 6,
     "classe": "1COL",
-    "livello": 9,
-    "VotoPer4": 15
+    "livello": 11,
+    "VotoPer4": 22
   },
   "v-wjgqAw4H6uXAE5AAAh": {
     "username": "🌽",
@@ -153,6 +153,22 @@
   "tsZWqXk02PdpekE0AAAl": {
     "username": "🌿",
     "real": "Staiano",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1COL",
+    "livello": 0
+  },
+  "nZa-nZjlqnse8pVyAAAv": {
+    "username": "🍄",
+    "real": "Dondi",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1COL",
+    "livello": 0
+  },
+  "P0wefKSxwUPhf_HHAAA5": {
+    "username": "🍉",
+    "real": "Misiano",
     "punti": 0,
     "prove": 0,
     "classe": "1COL",
