@@ -18,20 +18,20 @@
   "itf0pmFC8QRbt2IGAAAF": {
     "username": "🌯",
     "real": "Davide Sanna",
-    "punti": 8,
-    "prove": 7,
+    "punti": 10,
+    "prove": 8,
     "classe": "1CA",
-    "livello": 8,
-    "VotoPer4": 9
+    "livello": 9,
+    "VotoPer4": 12
   },
   "yeZtLQEU3JB-R0uyAAAH": {
     "username": "🌰",
     "real": "Carlotta Marel",
-    "punti": 4,
-    "prove": 4,
+    "punti": 6,
+    "prove": 5,
     "classe": "1CA",
-    "livello": 4,
-    "VotoPer4": 4
+    "livello": 6,
+    "VotoPer4": 7
   },
   "q4akv5FXTCki0-NfAAAJ": {
     "username": "🌱",
@@ -45,29 +45,29 @@
   "3SqEbp4mBcjMAUpzAAAL": {
     "username": "🌲",
     "real": "Pietro Tamagni",
-    "punti": 5,
-    "prove": 5,
+    "punti": 7,
+    "prove": 9,
     "classe": "1CA",
-    "livello": 5,
+    "livello": 7,
     "VotoPer4": 5
   },
   "8h2EB8BRenSIYn_aAAAN": {
     "username": "🌳",
     "real": "V Crudo",
-    "punti": 5,
-    "prove": 3,
+    "punti": 7,
+    "prove": 4,
     "classe": "1CA",
-    "livello": 5,
-    "VotoPer4": 7
+    "livello": 7,
+    "VotoPer4": 10
   },
   "b-dAfI3M2BfRNFSBAAAQ": {
     "username": "🌴",
     "real": "Jana Mohamed",
-    "punti": 8,
+    "punti": 12,
     "prove": 6,
     "classe": "1CA",
-    "livello": 8,
-    "VotoPer4": 10
+    "livello": 10,
+    "VotoPer4": 18
   },
   "DyJMTxKyzGm-BZWSAAAR": {
     "username": "🌵",
@@ -80,20 +80,20 @@
   "Hs5e4U4zNpow3Fg7AAAU": {
     "username": "🌶",
     "real": "G Grosso",
-    "punti": 7,
+    "punti": 10,
     "prove": 3,
     "classe": "1CA",
-    "livello": 7,
-    "VotoPer4": 11
+    "livello": 9,
+    "VotoPer4": 17
   },
   "sSBdUkJUx4aFHlvGAAAV": {
     "username": "🌷",
     "real": "A Consonni",
-    "punti": 7,
-    "prove": 2,
+    "punti": 8,
+    "prove": 5,
     "classe": "1CA",
-    "livello": 7,
-    "VotoPer4": 12
+    "livello": 8,
+    "VotoPer4": 11
   },
   "UOi6aRL5WcKHf6WdAAAX": {
     "username": "🌸",
@@ -107,19 +107,19 @@
   "mhlhAMPxhYZffQRcAAAZ": {
     "username": "🌹",
     "real": "R Bellingardo",
-    "punti": 8,
+    "punti": 12,
     "prove": 1,
     "classe": "1CA",
-    "livello": 8,
-    "VotoPer4": 15
+    "livello": 10,
+    "VotoPer4": 23
   },
   "5-vODgIbcn8MQP_VAAAb": {
     "username": "🌺",
     "real": "Fatima Hajji",
-    "punti": 2,
-    "prove": 2,
+    "punti": 3,
+    "prove": 4,
     "classe": "1CA",
-    "livello": 2,
+    "livello": 3,
     "VotoPer4": 2
   },
   "VrVKDmmABPEQyJ04AAAd": {
@@ -135,41 +135,49 @@
     "username": "🌼",
     "real": "G. Airoldi",
     "punti": 4,
-    "prove": 8,
+    "prove": 9,
     "classe": "1CA",
     "livello": 4,
-    "VotoPer4": 0
+    "VotoPer4": -1
   },
   "hN12gJEDrW1wlZSUAAAh": {
     "username": "🌽",
     "real": "Agata Lorenzet",
-    "punti": 10,
-    "prove": 3,
+    "punti": 14,
+    "prove": 4,
     "classe": "1CA",
-    "livello": 9,
-    "VotoPer4": 17
+    "livello": 11,
+    "VotoPer4": 24
   },
   "bvFDCnD2iU2R79zOAAAj": {
     "username": "🌾",
     "real": "Elia Zambon",
-    "punti": 2,
+    "punti": 4,
     "prove": 3,
     "classe": "1CA",
-    "livello": 2,
-    "VotoPer4": 1
+    "livello": 4,
+    "VotoPer4": 5
   },
   "OUNUv69xId23GIpAAAAl": {
     "username": "🌿",
     "real": "Guia Pasquali",
     "punti": 6,
-    "prove": 3,
+    "prove": 4,
     "classe": "1CA",
     "livello": 6,
-    "VotoPer4": 9
+    "VotoPer4": 8
   },
   "a1a7qeNqZpgrgX6lAAAn": {
     "username": "🍀",
     "real": "N&#39;dri S",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1CA",
+    "livello": 0
+  },
+  "J4Jv-gijzkrYmK9wAAAx": {
+    "username": "🍅",
+    "real": "G.Airoldi",
     "punti": 0,
     "prove": 0,
     "classe": "1CA",
