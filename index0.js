@@ -104,7 +104,7 @@ function aggiorna_numeri (socket){
   if (socket.livello <= saltaLiv[0]) {
     let tipConv = socket.livello % 6;
     if (tipConv == 0) { //d2b
-      socketMulticast(gara.get(socket.classe)[socket.livello], 'new_number', { liv: socket.livello, ok: false, msg: 'Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In binario  ' });
+      socketMulticast(gara.get(socket.classe)[socket.livello], 'new_number', { liv: socket.livello, ok: false, msg: 'Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In binario ' });
     } else if (tipConv == 1) { //b2d
       { //b2d
         xnumgara.get(socket.classe)[socket.livello] = xnumgara.get(socket.classe)[socket.livello].toString(2);
@@ -175,19 +175,19 @@ function premia(socket) {
   if (socket.livello <= saltaLiv[0]) {
     let tipConv = socket.livello % 6;
     if (tipConv == 0) //d2b
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>(10)</sub> In binario __<sub>(2)</sub> per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In binario  per il livello' });
     else if (tipConv == 1) //b2d
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>(2)</sub> In decimale __<sub>(10)</sub> per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>2</sub> In decimale per il livello' });
     else if (tipConv == 2) //d2o
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>(10)</sub> In ottale __<sub>(8)</sub> per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In ottale per il livello' });
     else if (tipConv == 3) //o2d
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>(8)</sub> In decimale __<sub>(10)</sub> per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>8</sub> In decimale per il livello' });
     else if (tipConv == 4) //d2E
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>(10)</sub> In esadecimale __<sub>(16)</sub> per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In esadecimale per il livello' });
     else //if (tipConv==5) //E2d
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>(16)</sub> In decimale __<sub>(10)</sub> per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>16</sub> In decimale per il livello' });
   } else if (socket.livello <= saltaLiv[2]) //b2o
-    socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>(2)</sub> In ottale __<sub>(8)</sub> per il livello' });
+    socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>2</sub> In ottale per il livello' });
   else if (socket.livello <= saltaLiv[3])  //fb2d
     socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆🏆🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>2</sub> In decimale con . e + ' + (socket.livello - saltaLiv[1]) + ' bits x Livello:' });
   else //fd2b
