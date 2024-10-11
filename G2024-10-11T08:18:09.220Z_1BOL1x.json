@@ -12,10 +12,10 @@
     "username": "🍭",
     "real": "fracassi",
     "punti": 22,
-    "prove": 0,
+    "prove": 3,
     "classe": "1BOL1x",
     "livello": 15,
-    "VotoPer4": 44
+    "VotoPer4": 41
   },
   "3KKs_HpL2LJVochOAACF": {
     "username": "🍯",
@@ -49,5 +49,14 @@
     "prove": 0,
     "classe": "1BOL1x",
     "livello": 0
+  },
+  "jAlHXlW1DxWJryYLAADj": {
+    "username": "🎞",
+    "real": "fracassi",
+    "punti": 0,
+    "prove": 2,
+    "classe": "1BOL1x",
+    "livello": 0,
+    "VotoPer4": -2
   }
 }

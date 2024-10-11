@@ -21,10 +21,10 @@
     "username": "🌴",
     "real": "Riccardo Melis",
     "punti": 16,
-    "prove": 12,
+    "prove": 13,
     "classe": "1BOL2",
     "livello": 12,
-    "VotoPer4": 20
+    "VotoPer4": 19
   },
   "wZqjERJtggGHhlNnAAAT": {
     "username": "🌶",
@@ -73,5 +73,23 @@
     "prove": 0,
     "classe": "1BOL2",
     "livello": 0
+  },
+  "61lVnqGU5sCoXMvAAADd": {
+    "username": "🎛",
+    "real": "Mario Ostani",
+    "punti": 3,
+    "prove": 3,
+    "classe": "1BOL2",
+    "livello": 3,
+    "VotoPer4": 3
+  },
+  "0VHjwqu7QUa_54NrAADf": {
+    "username": "🎜",
+    "real": "Riccardo Melis",
+    "punti": 4,
+    "prove": 0,
+    "classe": "1BOL2",
+    "livello": 4,
+    "VotoPer4": 8
   }
 }
