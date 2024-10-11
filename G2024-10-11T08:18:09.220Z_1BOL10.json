@@ -2,29 +2,29 @@
   "MTZeNlZwILpy9EftAACI": {
     "username": "🍰",
     "real": "Zellioli David",
-    "punti": 2,
+    "punti": 4,
     "prove": 1,
     "classe": "1BOL10",
-    "livello": 2,
-    "VotoPer4": 3
+    "livello": 4,
+    "VotoPer4": 7
   },
   "R79KKhwWNappi1u5AACJ": {
     "username": "🍱",
     "real": "RESA",
-    "punti": 2,
+    "punti": 6,
     "prove": 0,
     "classe": "1BOL10",
-    "livello": 2,
-    "VotoPer4": 4
+    "livello": 6,
+    "VotoPer4": 12
   },
   "dgx3Dx_1ALRM9fGjAACL": {
     "username": "🍲",
     "real": "Vanoli Sara",
-    "punti": 7,
-    "prove": 0,
+    "punti": 12,
+    "prove": 4,
     "classe": "1BOL10",
-    "livello": 7,
-    "VotoPer4": 14
+    "livello": 10,
+    "VotoPer4": 20
   },
   "kAYB8xwm8qFl-Dy-AACN": {
     "username": "🍳",
@@ -37,11 +37,11 @@
   "K3KYoVV619roSMVUAACR": {
     "username": "🍵",
     "real": "PUDDU",
-    "punti": 4,
+    "punti": 6,
     "prove": 5,
     "classe": "1BOL10",
-    "livello": 4,
-    "VotoPer4": 3
+    "livello": 6,
+    "VotoPer4": 7
   },
   "2Ma8uH2w0H1OrR1OAACT": {
     "username": "🍶",
@@ -60,5 +60,13 @@
     "classe": "1BOL10",
     "livello": 4,
     "VotoPer4": -2
+  },
+  "rjniJUaKa3Y8UagpAADH": {
+    "username": "🎐",
+    "real": "PRUDENTE",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1BOL10",
+    "livello": 0
   }
 }
