@@ -2,55 +2,63 @@
   "_1JFn_7c0OYGdPgaAAAf": {
     "username": "🌼",
     "real": "Valentini Albe",
-    "punti": 0,
-    "prove": 1,
+    "punti": 3,
+    "prove": 2,
     "classe": "1BOL3",
-    "livello": 0,
-    "VotoPer4": -1
+    "livello": 3,
+    "VotoPer4": 4
   },
   "k5EHdwcMWXlSIWAaAAAn": {
     "username": "🍀",
     "real": "Vanoli Sara",
-    "punti": 1,
-    "prove": 1,
+    "punti": 4,
+    "prove": 5,
     "classe": "1BOL3",
-    "livello": 1,
-    "VotoPer4": 1
+    "livello": 4,
+    "VotoPer4": 3
   },
   "cz0tyqMXgZnvZfTOAAAp": {
     "username": "🍁",
     "real": "Zellioli David",
     "punti": 1,
-    "prove": 1,
+    "prove": 7,
     "classe": "1BOL3",
     "livello": 1,
-    "VotoPer4": 1
+    "VotoPer4": -5
   },
   "ZNdywPHhonYC-rlRAAAt": {
     "username": "🍃",
     "real": "PRUDENTE",
-    "punti": 1,
-    "prove": 3,
+    "punti": 2,
+    "prove": 8,
     "classe": "1BOL3",
-    "livello": 1,
-    "VotoPer4": -1
+    "livello": 2,
+    "VotoPer4": -4
   },
   "XtPJpPRNFee-1WYNAAAv": {
     "username": "🍄",
     "real": "RESA",
     "punti": 1,
-    "prove": 0,
+    "prove": 1,
     "classe": "1BOL3",
     "livello": 1,
-    "VotoPer4": 2
+    "VotoPer4": 1
   },
   "ZOqC9v0jq8e4R8WRAAAz": {
     "username": "🍆",
     "real": "PUDDU",
-    "punti": 1,
-    "prove": 2,
+    "punti": 2,
+    "prove": 8,
     "classe": "1BOL3",
-    "livello": 1,
-    "VotoPer4": 0
+    "livello": 2,
+    "VotoPer4": -4
+  },
+  "sL6IwIeJ4eYNxZPpAABP": {
+    "username": "🍔",
+    "real": "mora andrea",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1BOL3",
+    "livello": 0
   }
 }
