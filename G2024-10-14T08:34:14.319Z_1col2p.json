@@ -84,9 +84,10 @@
     "username": "🌹",
     "real": "prof",
     "punti": 0,
-    "prove": 0,
+    "prove": 1,
     "classe": "1col2p",
-    "livello": 0
+    "livello": 0,
+    "VotoPer4": -1
   },
   "KLFSbf95doZDHR21AAAk": {
     "username": "🌺",
