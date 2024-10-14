@@ -37,47 +37,47 @@
   "KAT0yZuDcn5p78H-AAAR": {
     "username": "🌵",
     "real": "er marcis",
-    "punti": 8,
-    "prove": 7,
+    "punti": 10,
+    "prove": 9,
     "classe": "prova",
-    "livello": 8,
-    "VotoPer4": 9
+    "livello": 9,
+    "VotoPer4": 11
   },
   "TTbm1ePId-atasAxAAAT": {
     "username": "🌶",
     "real": "spadin nadir",
-    "punti": 12,
-    "prove": 2,
+    "punti": 20,
+    "prove": 4,
     "classe": "prova",
-    "livello": 10,
-    "VotoPer4": 22
+    "livello": 14,
+    "VotoPer4": 36
   },
   "tXGgnAVry8ODs73TAAAV": {
     "username": "🌷",
     "real": "Cerulli Tomas",
     "punti": 6,
-    "prove": 6,
+    "prove": 7,
     "classe": "prova",
     "livello": 6,
-    "VotoPer4": 6
+    "VotoPer4": 5
   },
   "C0JhArNzz-fkcqOgAAAY": {
     "username": "🌸",
     "real": "talarico,leo",
-    "punti": 10,
+    "punti": 18,
     "prove": 4,
     "classe": "prova",
-    "livello": 9,
-    "VotoPer4": 16
+    "livello": 13,
+    "VotoPer4": 32
   },
   "IvnlUToYaTy5v_EmAAAZ": {
     "username": "🌹",
     "real": "cesrebonanomi",
-    "punti": 12,
+    "punti": 14,
     "prove": 3,
     "classe": "prova",
-    "livello": 10,
-    "VotoPer4": 21
+    "livello": 11,
+    "VotoPer4": 25
   },
   "kYr1kRVobkuql2Z7AAAb": {
     "username": "🌺",
@@ -92,10 +92,10 @@
     "username": "🌻",
     "real": "giordano",
     "punti": 6,
-    "prove": 5,
+    "prove": 6,
     "classe": "prova",
     "livello": 6,
-    "VotoPer4": 7
+    "VotoPer4": 6
   },
   "pqF2Jgmeit4mo4hjAAAg": {
     "username": "🌼",
@@ -119,37 +119,37 @@
     "username": "🌾",
     "real": "gattoni marco",
     "punti": 7,
-    "prove": 3,
+    "prove": 6,
     "classe": "prova",
     "livello": 7,
-    "VotoPer4": 11
+    "VotoPer4": 8
   },
   "OweaZpNqX3yYBCxnAAAl": {
     "username": "🌿",
     "real": "tomasini gabri",
     "punti": 5,
-    "prove": 5,
+    "prove": 11,
     "classe": "prova",
     "livello": 5,
-    "VotoPer4": 5
+    "VotoPer4": -1
   },
   "TOacFV1LAIcCt_N7AAAn": {
     "username": "🍀",
     "real": "francesco dors",
     "punti": 3,
-    "prove": 7,
+    "prove": 8,
     "classe": "prova",
     "livello": 3,
-    "VotoPer4": -1
+    "VotoPer4": -2
   },
   "IBQMPgXWpUv9YMIUAAAp": {
     "username": "🍁",
     "real": "Beld&#236; Erik",
     "punti": 6,
-    "prove": 7,
+    "prove": 8,
     "classe": "prova",
     "livello": 6,
-    "VotoPer4": 5
+    "VotoPer4": 4
   },
   "aX_JJQi6vMprV4b9AAAr": {
     "username": "🍂",
@@ -172,6 +172,14 @@
   "jHP66z5Dl0wmBLqBAAAx": {
     "username": "🍅",
     "real": "Gioele",
+    "punti": 0,
+    "prove": 0,
+    "classe": "prova",
+    "livello": 0
+  },
+  "55AznY1fD4O21tuSAAA1": {
+    "username": "🍇",
+    "real": "Barella",
     "punti": 0,
     "prove": 0,
     "classe": "prova",
