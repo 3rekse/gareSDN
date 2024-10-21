@@ -2,92 +2,92 @@
   "NUTI7KNT3kHRrwpiAAAB": {
     "username": "🌭",
     "real": "barella",
-    "punti": 3,
-    "prove": 3,
+    "punti": 7,
+    "prove": 4,
     "classe": "1aol2",
-    "livello": 3,
-    "VotoPer4": 3
+    "livello": 7,
+    "VotoPer4": 10
   },
   "Z8GQe5qfOgmDNMJjAAAG": {
     "username": "🌮",
     "real": "spadin nadir",
-    "punti": 6,
+    "punti": 7,
     "prove": 0,
     "classe": "1aol2",
-    "livello": 6,
-    "VotoPer4": 12
+    "livello": 7,
+    "VotoPer4": 14
   },
   "HjnC97Ye-tGLbbiZAAAH": {
     "username": "🌯",
     "real": "leonardo tala",
-    "punti": 8,
+    "punti": 10,
     "prove": 0,
     "classe": "1aol2",
-    "livello": 8,
-    "VotoPer4": 16
+    "livello": 9,
+    "VotoPer4": 20
   },
   "qvGQrm3qzRUbs6oaAAAD": {
     "username": "🌰",
     "real": "Marcis C.",
-    "punti": 6,
-    "prove": 1,
+    "punti": 8,
+    "prove": 2,
     "classe": "1aol2",
-    "livello": 6,
-    "VotoPer4": 11
+    "livello": 8,
+    "VotoPer4": 14
   },
   "yys7quesJbh4151LAAAJ": {
     "username": "🌱",
     "real": "Mastroianni G",
-    "punti": 4,
-    "prove": 0,
+    "punti": 5,
+    "prove": 1,
     "classe": "1aol2",
-    "livello": 4,
-    "VotoPer4": 8
+    "livello": 5,
+    "VotoPer4": 9
   },
   "-HR5JZkNE-oH8PVxAAAL": {
     "username": "🌲",
     "real": "cerulli tomas",
-    "punti": 12,
-    "prove": 2,
+    "punti": 14,
+    "prove": 3,
     "classe": "1aol2",
-    "livello": 10,
-    "VotoPer4": 22
+    "livello": 11,
+    "VotoPer4": 25
   },
   "rzFOBVzt_pFxVC3QAAAP": {
     "username": "🌳",
     "real": "giordano matti",
+    "punti": 5,
+    "prove": 3,
+    "classe": "1aol2",
+    "livello": 5,
+    "VotoPer4": 7
+  },
+  "hVHLMimEPbL75EsUAAAO": {
+    "username": "🌴",
+    "real": "marco gattoni",
+    "punti": 4,
+    "prove": 2,
+    "classe": "1aol2",
+    "livello": 4,
+    "VotoPer4": 6
+  },
+  "N03zLHUG9EiKTRzSAAAR": {
+    "username": "🌵",
+    "real": "Beld&#236; Erik",
     "punti": 4,
     "prove": 1,
     "classe": "1aol2",
     "livello": 4,
     "VotoPer4": 7
   },
-  "hVHLMimEPbL75EsUAAAO": {
-    "username": "🌴",
-    "real": "marco gattoni",
-    "punti": 3,
-    "prove": 2,
-    "classe": "1aol2",
-    "livello": 3,
-    "VotoPer4": 4
-  },
-  "N03zLHUG9EiKTRzSAAAR": {
-    "username": "🌵",
-    "real": "Beld&#236; Erik",
-    "punti": 4,
-    "prove": 0,
-    "classe": "1aol2",
-    "livello": 4,
-    "VotoPer4": 8
-  },
   "Y1JddsGc8E3Oq4h1AAAT": {
     "username": "🌶",
     "real": "matteo arzabni",
-    "punti": 6,
-    "prove": 1,
+    "punti": 16,
+    "prove": 3,
     "classe": "1aol2",
-    "livello": 6,
-    "VotoPer4": 11
+    "livello": 12,
+    "VotoPer4": 29
   },
   "3OJseaarHakiyl68AAAV": {
     "username": "🌷",
@@ -110,11 +110,11 @@
   "eRuIp8uw-R3N9xnwAAAZ": {
     "username": "🌹",
     "real": "samuele trezzi",
-    "punti": 8,
-    "prove": 3,
+    "punti": 12,
+    "prove": 5,
     "classe": "1aol2",
-    "livello": 8,
-    "VotoPer4": 13
+    "livello": 10,
+    "VotoPer4": 19
   },
   "15ugAS2qYg0CFPdbAAAb": {
     "username": "🌺",
@@ -136,6 +136,66 @@
   "K9DVycrwe6tm4llfAAAh": {
     "username": "🌽",
     "real": "riccardo b",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1aol2",
+    "livello": 0
+  },
+  "V45N4ALgSpQcwxQvAAAn": {
+    "username": "🍀",
+    "real": "spadin nadir",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1aol2",
+    "livello": 0
+  },
+  "WXZrLl0fKR301z_YAAAp": {
+    "username": "🍁",
+    "real": "Beld&#236; Erik",
+    "punti": 1,
+    "prove": 0,
+    "classe": "1aol2",
+    "livello": 1,
+    "VotoPer4": 2
+  },
+  "Y-9sYmVRmH15LF4TAAAr": {
+    "username": "🍂",
+    "real": "Beld&#236; Erik",
+    "punti": 1,
+    "prove": 1,
+    "classe": "1aol2",
+    "livello": 1,
+    "VotoPer4": 1
+  },
+  "AN0rmtQEOpW_5woQAAAt": {
+    "username": "🍃",
+    "real": "Mastroianni G",
+    "punti": 0,
+    "prove": 1,
+    "classe": "1aol2",
+    "livello": 0,
+    "VotoPer4": -1
+  },
+  "FXoNgJNpwRIP5XlyAAAv": {
+    "username": "🍄",
+    "real": "fanchini aless",
+    "punti": 2,
+    "prove": 0,
+    "classe": "1aol2",
+    "livello": 2,
+    "VotoPer4": 4
+  },
+  "sy_Vg3Vn5vATs2hyAAAz": {
+    "username": "🍆",
+    "real": "spadin nadir",
+    "punti": 0,
+    "prove": 0,
+    "classe": "1aol2",
+    "livello": 0
+  },
+  "DITGb5PR5gVnbsqdAAA1": {
+    "username": "🍇",
+    "real": "leonardo tala",
     "punti": 0,
     "prove": 0,
     "classe": "1aol2",
