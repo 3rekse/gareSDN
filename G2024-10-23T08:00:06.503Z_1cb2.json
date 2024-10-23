@@ -2,11 +2,11 @@
   "gA2ta4KfzNd0If9sAAAB": {
     "username": "🌭",
     "real": "Alwis Kawisha",
-    "punti": 8,
-    "prove": 4,
+    "punti": 12,
+    "prove": 5,
     "classe": "1cb2",
-    "livello": 8,
-    "VotoPer4": 12
+    "livello": 10,
+    "VotoPer4": 19
   },
   "4PxXAuqSdoKv4FdTAAAD": {
     "username": "🌮",
@@ -19,65 +19,65 @@
   "0Sk0e4bH8qU2rSIkAAAF": {
     "username": "🌯",
     "real": "cavallari F",
-    "punti": 8,
-    "prove": 4,
+    "punti": 12,
+    "prove": 6,
     "classe": "1cb2",
-    "livello": 8,
-    "VotoPer4": 12
+    "livello": 10,
+    "VotoPer4": 18
   },
   "_LVrUCYI7uQmjQAiAAAH": {
     "username": "🌰",
     "real": "Mascolo Mattia",
+    "punti": 16,
+    "prove": 9,
+    "classe": "1cb2",
+    "livello": 12,
+    "VotoPer4": 23
+  },
+  "6Tg5KjC3h-0VWdW-AAAL": {
+    "username": "🌱",
+    "real": "Tellatin S",
+    "punti": 16,
+    "prove": 8,
+    "classe": "1cb2",
+    "livello": 12,
+    "VotoPer4": 24
+  },
+  "GXoR_kW7mM44cO28AAAM": {
+    "username": "🌲",
+    "real": "Rigas Andreas",
+    "punti": 16,
+    "prove": 9,
+    "classe": "1cb2",
+    "livello": 12,
+    "VotoPer4": 23
+  },
+  "XQDvDNkmz8M51awgAAAN": {
+    "username": "🌳",
+    "real": "Ambrosioni R",
     "punti": 16,
     "prove": 7,
     "classe": "1cb2",
     "livello": 12,
     "VotoPer4": 25
   },
-  "6Tg5KjC3h-0VWdW-AAAL": {
-    "username": "🌱",
-    "real": "Tellatin S",
-    "punti": 16,
-    "prove": 6,
-    "classe": "1cb2",
-    "livello": 12,
-    "VotoPer4": 26
-  },
-  "GXoR_kW7mM44cO28AAAM": {
-    "username": "🌲",
-    "real": "Rigas Andreas",
-    "punti": 14,
-    "prove": 8,
-    "classe": "1cb2",
-    "livello": 11,
-    "VotoPer4": 20
-  },
-  "XQDvDNkmz8M51awgAAAN": {
-    "username": "🌳",
-    "real": "Ambrosioni R",
-    "punti": 14,
-    "prove": 7,
-    "classe": "1cb2",
-    "livello": 11,
-    "VotoPer4": 21
-  },
   "1OU5pTuPpwUneBxeAAAP": {
     "username": "🌴",
     "real": "Mesiti Gregory",
-    "punti": 14,
+    "punti": 18,
     "prove": 7,
     "classe": "1cb2",
-    "livello": 11,
-    "VotoPer4": 21
+    "livello": 13,
+    "VotoPer4": 29
   },
   "gk6Z5Eep5x9n4nwZAAAR": {
     "username": "🌵",
     "real": "lucreziaboriol",
-    "punti": 10,
+    "punti": 12,
     "prove": 2,
     "classe": "1cb2",
-    "livello": 9,
-    "VotoPer4": 18
+    "livello": 10,
+    "VotoPer4": 22
   },
   "dMWhYL2l2CBeMlY8AAAT": {
     "username": "🌶",
@@ -118,29 +118,29 @@
   "uwkZZAQNAOuG_0vmAAAb": {
     "username": "🌺",
     "real": "Hadj Fredj Rim",
-    "punti": 6,
+    "punti": 8,
     "prove": 0,
     "classe": "1cb2",
-    "livello": 6,
-    "VotoPer4": 12
+    "livello": 8,
+    "VotoPer4": 16
   },
   "1onIskyCgt126eU2AAAd": {
     "username": "🌻",
     "real": "adelaida hysll",
     "punti": 6,
-    "prove": 1,
+    "prove": 2,
     "classe": "1cb2",
     "livello": 6,
-    "VotoPer4": 11
+    "VotoPer4": 10
   },
   "rZHZkdg9iINFEDOxAAAf": {
     "username": "🌼",
     "real": "nicholas p",
-    "punti": 3,
+    "punti": 4,
     "prove": 1,
     "classe": "1cb2",
-    "livello": 3,
-    "VotoPer4": 5
+    "livello": 4,
+    "VotoPer4": 7
   },
   "3Owfu8-LlA5aB4d3AAAh": {
     "username": "🌽",
@@ -164,10 +164,10 @@
     "username": "🌿",
     "real": "giordano m",
     "punti": 14,
-    "prove": 12,
+    "prove": 14,
     "classe": "1cb2",
     "livello": 11,
-    "VotoPer4": 16
+    "VotoPer4": 14
   },
   "t4-2fpEd4QVavVN3AAAn": {
     "username": "🍀",
@@ -181,29 +181,29 @@
   "wm9XWN0uPrsG9PDBAAAp": {
     "username": "🍁",
     "real": "Peshev A.",
-    "punti": 3,
-    "prove": 7,
+    "punti": 4,
+    "prove": 8,
     "classe": "1cb2",
-    "livello": 3,
-    "VotoPer4": -1
+    "livello": 4,
+    "VotoPer4": 0
   },
   "kwWmjJKzf2L12hWPAAAr": {
     "username": "🍂",
     "real": "elhassouny H",
     "punti": 10,
-    "prove": 3,
+    "prove": 4,
     "classe": "1cb2",
     "livello": 9,
-    "VotoPer4": 17
+    "VotoPer4": 16
   },
   "LJ9Zsq9DdIi64Z-oAAAt": {
     "username": "🍃",
     "real": "D&#39;amuri",
-    "punti": 8,
+    "punti": 10,
     "prove": 1,
     "classe": "1cb2",
-    "livello": 8,
-    "VotoPer4": 15
+    "livello": 9,
+    "VotoPer4": 19
   },
   "yYXuBx-M5fod7G9HAAAx": {
     "username": "🍅",
