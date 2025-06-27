@@ -300,6 +300,13 @@ socket.on('banned', function () {
   socket.emit('disconnect');
   
   });
+
+  socket.on('gameover', function () {
+    $('#top1').text(' Game Over ');
+  socket.emit('disconnect');
+  
+  });
+
   // Whenever the server emits 'user joined', log it in the chat body
   socket.on('user joined', function (data) {
     log(data.username + ' joined');

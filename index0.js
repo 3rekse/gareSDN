@@ -314,10 +314,10 @@ io.on('connection', function (socket) {
     aggiorna_iscritti(socket,myid,message);
     
     let d1 = new Date();
-    if ((d1 - gareInRun[socket.classe]) > (4 * 60 * 1000)) {
+    if ((d1 - gareInRun[socket.classe]) > (1 * 60 * 1000)) {
       let myclass = gara.get(socket.classe)
       for (let i = myclass.length; i > 0;)
-        socketMulticast(gara.get(socket.classe)[--i], 'banned', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: message });
+        socketMulticast(gara.get(socket.classe)[--i], 'gameover', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: message });
       console.log('invio email agli iscritti ' + socket.classe);
      // Formatta le date per il soggetto dell'email
       const startTime = gareInRun[socket.classe];
