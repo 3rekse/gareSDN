@@ -78,13 +78,13 @@ async function socketMulticast(socketMappa,titolo,msqemit) {
 
   try {
     // Blocco di codice critico
-    console.log('Inizio operazione critica');
-    console.log("#Avviso: "+titolo+'-'+msqemit + " per:" +socketMappa.size);
+  //  console.log('Inizio operazione critica');
+   // console.log("#Avviso: "+titolo+'-'+msqemit + " per:" +socketMappa.size);
   for (const [socketId] of socketMappa) {   
-    console.log(` ${socketId} .  ${msqemit.liv}`);
+   // console.log(` ${socketId} .  ${msqemit.liv}`);
       io.to(socketId).emit(titolo, msqemit);
   }
-    console.log('Fine operazione critica');
+  //  console.log('Fine operazione critica');
   } finally {
     // Rilascio del mutex, anche in caso di errore
     release();
@@ -92,18 +92,18 @@ async function socketMulticast(socketMappa,titolo,msqemit) {
 }
 
 function inviaAttese() {
-  console.log(Object.keys(gareInWait).length)
+ // console.log(Object.keys(gareInWait).length)
   for (var nomegara in gareInWait) {
       if (gareInWait.hasOwnProperty(nomegara)) { // Verifica se la chiave è effettivamente nella mappa
           gareInWait[nomegara] -= 1; // decrementa il valore numerico
-          console.log("Gara: "+nomegara+" meno "+ gareInWait[nomegara]);
+        //  console.log("Gara: "+nomegara+" meno "+ gareInWait[nomegara]);
           socketMulticast  (gara.get(nomegara)[0], 'down', gareInWait[nomegara]);          
           if (gareInWait[nomegara]==0) 
           { delete gareInWait[nomegara];
               gareInRun[nomegara]= new Date(); //set timer 
               if( Object.keys(gareInWait).length==0){
                   clearInterval(countDown);
-                  //console.log("stoopato ")
+                  //console.log("stoppato ")
                   countDown=false;
               } 
               delete gareInWait[nomegara];               
@@ -134,10 +134,10 @@ if (socket.livello <= saltaLiv[0]) {
   let myfloat = parseFloat(msg).toString(2);
   myfloat = (myfloat.indexOf(".") === -1 ? myfloat + "." : myfloat) + "0000000";
   myfloat = myfloat.substring(0, myfloat.indexOf(".") + socket.livello - saltaLiv[1] + 1);
-  console.log(myfloat);
+ // console.log(myfloat);
   return (myfloat === xnumgara.get(socket.classe)[socket.livello]);
 } else { //fd2fb   
-  console.log(" CRITIC POINT " + socket.classe + " livello" + socket.livello)
+ // console.log(" CRITIC POINT " + socket.classe + " livello" + socket.livello)
   return (msg.trim() === xnumgara.get(socket.classe)[socket.livello].toString(2));
 }
 }
@@ -245,27 +245,29 @@ function aggiorna_iscritti(socket,myid,msg) {
     iscritto.VotoPer4 = (2 * socket.punti - socket.prove);
     fs.writeFile('G' + gare + '_' + socket.classe + '.json', JSON.stringify(Object.fromEntries(iscritti.get(socket.classe)), null, 2), 'utf-8', (err) => {
       if (err) {
-        console.error('Errore durante il salvataggio del file:', err);
+       // console.error('Errore durante il salvataggio del file:', err);
       } else {
-        console.log('Save : ' + gare + '_' + socket.classe + '.json');
+       // console.log('Save : ' + gare + '_' + socket.classe + '.json');
       }
     });
-  } else { console.log('Non iscritto') }
-  console.log('Avviso tutta la classe ');
+  } else { 
+   // console.log('Non iscritto') 
+  }
+  //console.log('Avviso tutta la classe ');
   let myclass = gara.get(socket.classe) 
   if(socket.punti > -5)
    for (let i = myclass.length; i > 0;) 
     {socketMulticast(gara.get(socket.classe)[--i], 'aggiorna', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: msg });}
   else {
       socket.emit('banned');
-      console.log('BANNED' + socket.real)
+     // console.log('BANNED' + socket.real)
     }
 }
 let numUsers = 0;
 
 io.on('connection', function (socket) {
   let addedUser = false;
-  console.log(`Client con ID ${socket.id} connesso.`);
+ // console.log(`Client con ID ${socket.id} connesso.`);
   // when the client emits 'new message', this listens and executes
   socket.on('new message', function (data) {
     if  (socket.punti<-5)
@@ -280,10 +282,10 @@ io.on('connection', function (socket) {
       // Quando un messaggio viene ricevuto, il nome utente del client viene recuperato e inviato agli altri partecipanti
   socket.on('message', function (message) {
     let myid = socket.id;
-    console.log(socket.punti-socket.prove );
+   // console.log(socket.punti-socket.prove );
     message = ent.encode(message.msg);
    if  ((socket.punti-socket.prove)<-5)
-    {  console.log(socket.punti-socket.prove );
+    { // console.log(socket.punti-socket.prove );
       socket.emit('banned');}
    else{ 
     if (condizione(message,socket)) {
@@ -292,7 +294,7 @@ io.on('connection', function (socket) {
       // POSIZIONATO CORRETTAMENTE gara.get(socket.classe)[socket.livello].delete(myid);
       // socket.broadcast.emit()
       // socketMulticast(gara.get(socket.classe)[socket.livello],'message', {liv: socket.livello ,username: socket.username, punti: 2*socket.punti+socket.prove , message: "WINNER"});
-      console.log(socket.classe + "nuovo #" + xnumgara.get(socket.classe)[socket.livello]);
+    //  console.log(socket.classe + "nuovo #" + xnumgara.get(socket.classe)[socket.livello]);
       gara.get(socket.classe)[socket.livello].delete(myid); // Lo tolgo dalla lista livelli           
       aggiorna_numeri(socket);
       socket.livello++;
@@ -308,7 +310,7 @@ io.on('connection', function (socket) {
     //socket.broadcast.emit('message', {liv: socket.livello ,username: socket.username,real: socket.real,classe: socket.classe , punti: 2*socket.punti-socket.prove , message: message});
 
 
-    console.log('Aggiorno iscritti ');
+  //  console.log('Aggiorno iscritti ');
     aggiorna_iscritti(socket,myid,message);
     
     let d1 = new Date();
@@ -400,16 +402,16 @@ io.on('connection', function (socket) {
     let username = ent.encode(newname.username);
     let classe=ent.encode(newname.classe); 
     let myid = socket.id;
-    console.log(`Client cID ${myid} `);
-    console.log(`${username} si è unito alla clesse ${classe} `);
+   // console.log(`Client cID ${myid} `);
+  //  console.log(`${username} si è unito alla clesse ${classe} `);
     if (!gara.has(classe)) {
         // Mappa per tenere traccia dei client connessi
-        console.log(`Nuova Classe ${classe}  `);
+        //console.log(`Nuova Classe ${classe}  `);
         gara.set(classe,[new Map()]);
         gareInWait[classe]= 60;
         if (!countDown){
            countDown=setInterval(inviaAttese, 1000);
-           console.log("CountDown" );
+         //  console.log("CountDown" );
          }
         xnumgara.set(classe,[Math.ceil(Math.random()*2)]); 
         iscritti.set(classe,new Map());
@@ -422,7 +424,7 @@ io.on('connection', function (socket) {
     socket.classe = classe;
     socket.livello = 0;
     socket.fase=0;
-    console.log((gara.get(classe)[0].size));
+   // console.log((gara.get(classe)[0].size));
     //if (gara.get(classe)[0].size>0)
     //socketMulticast(gara.get(classe)[0],'new_client', {username:socket.username,classe:socket.classe});
     gara.get(classe)[0].set(myid, socket);
@@ -433,7 +435,7 @@ io.on('connection', function (socket) {
         classe: socket.classe,
         livello: socket.livello
      } );
-    console.log("classe:"+classe+" iscritti "+iscritti.get(classe).size+" livello 0 "+gara.get(classe)[0].size);
+   // console.log("classe:"+classe+" iscritti "+iscritti.get(classe).size+" livello 0 "+gara.get(classe)[0].size);
     socketMulticast(gara.get(socket.classe)[0],'new_client',{username:socket.username,classe:socket.classe,real:socket.real, punti:0});
 //        socket.broadcast.emit('new_client', {username:socket.username,classe:socket.classe,real:socket.real, punti:0});
  //   socket.emit('new_client', {username:socket.username,classe:socket.classe,real:socket.real, punti:0});
