@@ -6,6 +6,45 @@ const io = require('socket.io')(server);
 const port = process.env.PORT || 3000;
 const ent = require('ent');
 const fs = require('fs');
+
+const nodemailer = require('nodemailer'); // Importa Nodemailer
+
+// Configurazione del transporter Nodemailer
+// Le credenziali devono essere fornite tramite variabili d'ambiente per sicurezza
+const transporter = nodemailer.createTransport({
+  service: process.env.EMAIL_SERVICE, // Es: 'gmail', 'outlook', 'SendGrid'
+  auth: {
+    user: process.env.EMAIL_USER,     // La tua email
+    pass: process.env.EMAIL_PASS      // La password della tua email o una password specifica per app
+  }
+});
+
+// Funzione per inviare email a un singolo indirizzo amministratore
+async function sendAdminEmail(recipientEmail, subject, htmlContent) {
+  if (!recipientEmail) {
+    console.error("Errore: Indirizzo email del destinatario amministratore non configurato.");
+    return;
+  }
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER, // L'indirizzo email del mittente
+    to: recipientEmail,          // L'indirizzo email del destinatario singolo
+    subject: subject,
+    html: htmlContent
+  };
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log(`Email inviata all'amministratore: %s`, info.messageId);
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info)); // Solo per account di test Ethereal
+  } catch (error) {
+    console.error(`Errore durante l'invio dell'email all'amministratore:`, error);
+  }
+}
+
+
+
+
 const gareInWait = new Map();
 const gareInRun = new Map();
 
@@ -23,6 +62,8 @@ app.use(express.static('public'));
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
 });
+
+
 
 // MUTEX per la sincronizzazione
 const { Mutex } = require('async-mutex');
@@ -271,17 +312,71 @@ io.on('connection', function (socket) {
     aggiorna_iscritti(socket,myid,message);
     
     let d1 = new Date();
-    if ((d1 - gareInRun[socket.classe]) > (40 * 60 * 1000)) {
+    if ((d1 - gareInRun[socket.classe]) > (4 * 60 * 1000)) {
       let myclass = gara.get(socket.classe)
       for (let i = myclass.length; i > 0;)
         socketMulticast(gara.get(socket.classe)[--i], 'banned', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: message });
-      console.log('testo')
+      console.log('invio email agli iscritti ' + socket.classe);
+     // Formatta le date per il soggetto dell'email
+      const startTime = gareInRun[socket.classe];
+      const endTime = d1;
+      const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      const startTimeFormatted = startTime.toLocaleString('it-IT', options);
+      const endTimeFormatted = endTime.toLocaleString('it-IT', options);
+
+      // Costruisci il soggetto dell'email
+      const emailSubject = `Riepilogo Gara: ${socket.classe} - Inizio: ${startTimeFormatted} - Fine: ${endTimeFormatted}`;
+
+      // Costruisci il corpo HTML con i punteggi dei partecipanti
+      let participantsHtml = `
+        <p>Ciao,</p>
+        <p>Di seguito il riepilogo della gara per la classe <strong>${socket.classe}</strong>, terminata per inattività.</p>
+        <h2>Risultati Partecipanti:</h2>
+        <table style="width:100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #f2f2f2;">
+              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Nome Utente (Simbolo)</th>
+              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Nome Reale</th>
+              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Punteggio Finale (2*punti - prove)</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      // Assicurati che iscritti.get(socket.classe) non sia null o undefined
+      const currentClassIscritti = iscritti.get(socket.classe);
+      if (currentClassIscritti) {
+          // Ordina gli iscritti per punteggio finale decrescente
+          const sortedParticipants = Array.from(currentClassIscritti.values()).sort((a, b) => b.VotoPer4 - a.VotoPer4);
+
+          sortedParticipants.forEach(userData => {
+              participantsHtml += `
+                  <tr>
+                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.username}</td>
+                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.real}</td>
+                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.VotoPer4}</td>
+                  </tr>
+              `;
+          });
+      } else {
+          participantsHtml += `<tr><td colspan="3" style="padding: 8px; border: 1px solid #ddd;">Nessun dato partecipante disponibile.</td></tr>`;
+      }
+
+      participantsHtml += `
+          </tbody>
+        </table>
+        <p>Grazie per aver utilizzato il servizio!</p>
+      `;
+
+      // Invia l'email all'indirizzo amministratore
+      sendAdminEmail(
+        process.env.ADMIN_EMAIL, // L'indirizzo email del singolo destinatario
+        emailSubject,
+        participantsHtml
+      );
     }
    }
   });
-        
-       
-
 
   // when the client emits 'add user', this listens and executes
   socket.on('add user', function (username) {
