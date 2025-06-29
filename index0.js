@@ -332,14 +332,14 @@ io.on('connection', function (socket) {
       // Costruisci il corpo HTML con i punteggi dei partecipanti
       let participantsHtml = `
         <p>Ciao,</p>
-        <p>Di seguito il riepilogo della gara per la classe <strong>${socket.classe}</strong>, terminata per inattività.</p>
+        <p>Di seguito il riepilogo della gara DigitBoy per la classe <strong>${socket.classe}</strong>.</p>
         <h2>Risultati Partecipanti:</h2>
         <table style="width:100%; border-collapse: collapse;">
           <thead>
             <tr style="background-color: #f2f2f2;">
-              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Nome Utente (Simbolo)</th>
-              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Nome Reale</th>
-              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Punteggio Finale (2*punti - prove)</th>
+              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Nome Utente +Simbolo</th>
+              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Voto </th>
+              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Punti - tentativi</th>
             </tr>
           </thead>
           <tbody>
@@ -354,10 +354,10 @@ io.on('connection', function (socket) {
           sortedParticipants.forEach(userData => {
               participantsHtml += `
                   <tr>
-                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.username}</td>
-                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.real}</td>
-                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.VotoPer4}</td>
-                  </tr>
+                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.real+userData.username}</td>
+                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.VotoPer4/4}</td>
+                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.pinti} - ${userData.prove }</td>
+                  </tr> 
               `;
           });
       } else {
