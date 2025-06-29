@@ -313,14 +313,15 @@ io.on('connection', function (socket) {
   //  console.log('Aggiorno iscritti ');
     aggiorna_iscritti(socket,myid,message);
     
-    let d1 = new Date();
+    const d1 = new Date();
     if ((d1 - gareInRun[socket.classe]) > (1 * 60 * 1000)) {
-      let myclass = gara.get(socket.classe)
+      const myclass = gara.get(socket.classe)
+      const startTime = gareInRun[socket.classe];
+      delete gareInRun[socket.classe];
       for (let i = myclass.length; i > 0;)
         socketMulticast(gara.get(socket.classe)[--i], 'gameover', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: message });
       console.log('invio email agli iscritti ' + socket.classe);
      // Formatta le date per il soggetto dell'email
-      const startTime = gareInRun[socket.classe];
       const endTime = d1;
       const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
       const startTimeFormatted = startTime.toLocaleString('it-IT', options);
@@ -356,7 +357,7 @@ io.on('connection', function (socket) {
                   <tr>
                       <td style="padding: 8px; border: 1px solid #ddd;">${userData.real+userData.username}</td>
                       <td style="padding: 8px; border: 1px solid #ddd;">${userData.VotoPer4/4}</td>
-                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.pinti} - ${userData.prove }</td>
+                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.punti} - ${userData.prove }</td>
                   </tr> 
               `;
           });
