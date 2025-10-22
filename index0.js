@@ -314,7 +314,7 @@ io.on('connection', function (socket) {
     aggiorna_iscritti(socket,myid,message);
     
     const d1 = new Date();
-    if ((d1 - gareInRun[socket.classe]) > (1 * 60 * 1000)) {
+    if ((d1 - gareInRun[socket.classe]) > ( 45 * 60 * 1000)) {
       const myclass = gara.get(socket.classe)
       const startTime = gareInRun[socket.classe];
       delete gareInRun[socket.classe];
