@@ -65,51 +65,33 @@ server.listen(port, function () {
 
 
 
-// MUTEX per la sincronizzazione
-const { Mutex } = require('async-mutex');
-
-// Creazione di un mutex
-const mutex = new Mutex();
-
-// Funzione che utilizza il mutex
-async function socketMulticast(socketMappa,titolo,msqemit) {
-  // Acquisizione del mutex
-  const release = await mutex.acquire();
-
-  try {
-    // Blocco di codice critico
-  //  console.log('Inizio operazione critica');
-   // console.log("#Avviso: "+titolo+'-'+msqemit + " per:" +socketMappa.size);
-  for (const [socketId] of socketMappa) {   
-   // console.log(` ${socketId} .  ${msqemit.liv}`);
-      io.to(socketId).emit(titolo, msqemit);
-  }
-  //  console.log('Fine operazione critica');
-  } finally {
-    // Rilascio del mutex, anche in caso di errore
-    release();
+function socketMulticast(socketMappa, titolo, msqemit) {
+  for (const [socketId] of socketMappa) {
+    io.to(socketId).emit(titolo, msqemit);
   }
 }
 
 function inviaAttese() {
- // console.log(Object.keys(gareInWait).length)
-  for (var nomegara in gareInWait) {
-      if (gareInWait.hasOwnProperty(nomegara)) { // Verifica se la chiave è effettivamente nella mappa
-          gareInWait[nomegara] -= 1; // decrementa il valore numerico
-        //  console.log("Gara: "+nomegara+" meno "+ gareInWait[nomegara]);
-          socketMulticast  (gara.get(nomegara)[0], 'down', gareInWait[nomegara]);          
-          if (gareInWait[nomegara]==0) 
-          { delete gareInWait[nomegara];
-              gareInRun[nomegara]= new Date(); //set timer 
-              if( Object.keys(gareInWait).length==0){
-                  clearInterval(countDown);
-                  //console.log("stoppato ")
-                  countDown=false;
-              } 
-              delete gareInWait[nomegara];               
-          }
-      }
-    }     
+  for (const [nomegara, secondi] of gareInWait) {
+    const rimanenti = secondi - 1;
+    const partecipanti = gara.get(nomegara)?.[0];
+
+    if (partecipanti) {
+      socketMulticast(partecipanti, 'down', rimanenti);
+    }
+
+    if (rimanenti <= 0) {
+      gareInWait.delete(nomegara);
+      gareInRun.set(nomegara, new Date());
+    } else {
+      gareInWait.set(nomegara, rimanenti);
+    }
+  }
+
+  if (gareInWait.size === 0 && countDown) {
+    clearInterval(countDown);
+    countDown = false;
+  }
 }
 
 function condizione (msg,socket){
@@ -314,10 +296,10 @@ io.on('connection', function (socket) {
     aggiorna_iscritti(socket,myid,message);
     
     const d1 = new Date();
-    if ((d1 - gareInRun[socket.classe]) > ( 45 * 60 * 1000)) {
+    const startTime = gareInRun.get(socket.classe);
+    if (startTime && (d1 - startTime) > (45 * 60 * 1000)) {
       const myclass = gara.get(socket.classe)
-      const startTime = gareInRun[socket.classe];
-      delete gareInRun[socket.classe];
+      gareInRun.delete(socket.classe);
       for (let i = myclass.length; i > 0;)
         socketMulticast(gara.get(socket.classe)[--i], 'gameover', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: message });
       console.log('invio email agli iscritti ' + socket.classe);
@@ -409,7 +391,7 @@ io.on('connection', function (socket) {
         // Mappa per tenere traccia dei client connessi
         //console.log(`Nuova Classe ${classe}  `);
         gara.set(classe,[new Map()]);
-        gareInWait[classe]= 60;
+        gareInWait.set(classe, 60);
         if (!countDown){
            countDown=setInterval(inviaAttese, 1000);
          //  console.log("CountDown" );
@@ -461,6 +443,26 @@ io.on('connection', function (socket) {
 
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
+    if (socket.classe) {
+      const livelli = gara.get(socket.classe);
+      if (livelli) {
+        for (const partecipanti of livelli) {
+          partecipanti.delete(socket.id);
+        }
+
+        if (!livelli.some((partecipanti) => partecipanti.size > 0) && gareInWait.has(socket.classe)) {
+          gareInWait.delete(socket.classe);
+          gara.delete(socket.classe);
+          xnumgara.delete(socket.classe);
+          iscritti.delete(socket.classe);
+          if (gareInWait.size === 0 && countDown) {
+            clearInterval(countDown);
+            countDown = false;
+          }
+        }
+      }
+    }
+
     if (addedUser) {
       --numUsers;
 

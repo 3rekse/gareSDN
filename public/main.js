@@ -291,19 +291,27 @@ $(function() {
     addParticipantsMessage(data);
   });
 
+  socket.on('disconnect', function (reason) {
+    connected = false;
+    typing = false;
+    if (reason !== 'io client disconnect') {
+      log('Connessione interrotta, riconnessione in corso...');
+    }
+  });
+
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {
     addChatMessage(data);
   });
 socket.on('banned', function () {
     addChatMessage("BANNED");
-  socket.emit('disconnect');
+  socket.disconnect();
   
   });
 
   socket.on('gameover', function () {
     $('#top1').text(' Game Over ');
-  socket.emit('disconnect');
+  socket.disconnect();
   
   });
 
