@@ -1,5 +1,9 @@
-node_modules/    # Escludi l'intera cartella node_modules
-
-package-lock.json # Escludi il file package-lock.json
-yarn.lock        # Escludi il file yarn.lock (se usi Yarn)
-.vercel
+node_modules/
+.env
+npm-debug.log*
+G*.json
+.vercel/
+.bash_history
+.config/
+.node-gyp
+.node_repl_history

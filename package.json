@@ -4,7 +4,7 @@
   "description": "GARA SDN con sochet.io",
   "main": "index0.js",
   "scripts": {
-    "test": "nodemon nodemon --ext js appX.js",
+    "test": "node --check index0.js && node --check public/main.js",
     "start": "node index0.js"
   },
   "author": "",
@@ -18,7 +18,7 @@
     "socket.io": "^4.7.5"
   },
   "engines": {
-    "node": "14.x"
+    "node": "22.x"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-hello-react"
