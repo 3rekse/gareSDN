@@ -37,6 +37,12 @@ $(function() {
   let typing = false;
   let lastTypingTime;
   let $currentInput = $classeInput.focus();
+  const playerIdStorageKey = 'digitboy-player-id';
+  let playerId = localStorage.getItem(playerIdStorageKey);
+  if (!playerId) {
+    playerId = crypto.randomUUID();
+    localStorage.setItem(playerIdStorageKey, playerId);
+  }
 
   let socket = io({autoConnect: false});
 
@@ -86,7 +92,7 @@ $(function() {
         // Tell the server your username
       console.log('Connessione stabilita!');
       socket.emit('add user', username);
-      socket.emit('new_client', {username:username, classe:classe});
+      socket.emit('new_client', {username:username, classe:classe, playerId:playerId});
       document.title = classe + ' - ' + document.title;
 
       });
@@ -304,7 +310,7 @@ $(function() {
     addChatMessage(data);
   });
 socket.on('banned', function () {
-    addChatMessage("BANNED");
+  log('Sei stato escluso dalla gara per troppi errori.');
   socket.disconnect();
   
   });
@@ -366,7 +372,11 @@ socket.on('banned', function () {
   socket.on('avatar', function(username) {
     $('#avatar').text('Avatar :'+username.username+''+username.real);
     $("#url").show();
-  })
+  });
+  socket.on('resume', function (data) {
+    livello = data.livello;
+    log('Partita ripresa dal livello ' + (livello + 1));
+  });
   socket.on('new_number', function(num) {
     if(num.ok) {livello++;}
     if(num.liv===livello)

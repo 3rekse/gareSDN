@@ -51,6 +51,7 @@ const gareInRun = new Map();
 const gara = new Map();
 const xnumgara= new Map(); 
 const iscritti= new Map(); 
+const playerSessions = new Map();
 const data = new Date();
 let countDown=false;
 let gare=data.toISOString();
@@ -194,27 +195,27 @@ function aggiungi_livello(socket) {
     xnumgara.get(socket.classe)[socket.livello] = parseInt(bc.substring(bc.indexOf(".") + 1), 2) / 2 ** (bc.length - bc.indexOf(".") - 1) + parseInt(bc.substring(0, bc.indexOf(".")), 2)
   }
 }
-function premia(socket) {
+function premia(socket, completed = true) {
   if (socket.livello <= saltaLiv[0]) {
     let tipConv = socket.livello % 6;
     if (tipConv == 0) //d2b
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In binario  per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: completed, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In binario  per il livello' });
     else if (tipConv == 1) //b2d
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>2</sub> In decimale per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: completed, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>2</sub> In decimale per il livello' });
     else if (tipConv == 2) //d2o
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In ottale per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: completed, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In ottale per il livello' });
     else if (tipConv == 3) //o2d
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>8</sub> In decimale per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: completed, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>8</sub> In decimale per il livello' });
     else if (tipConv == 4) //d2E
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In esadecimale per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: completed, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In esadecimale per il livello' });
     else //if (tipConv==5) //E2d
-      socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>16</sub> In decimale per il livello' });
+      socket.emit('new_number', { liv: socket.livello, ok: completed, msg: '🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>16</sub> In decimale per il livello' });
   } else if (socket.livello <= saltaLiv[2]) //b2o
-    socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>2</sub> In ottale per il livello' });
+    socket.emit('new_number', { liv: socket.livello, ok: completed, msg: '🏆🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>2</sub> In ottale per il livello' });
   else if (socket.livello <= saltaLiv[3])  //fb2d
-    socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆🏆🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>2</sub> In decimale con . e + ' + (socket.livello - saltaLiv[1]) + ' bits x Livello:' });
+    socket.emit('new_number', { liv: socket.livello, ok: completed, msg: '🏆🏆🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>2</sub> In decimale con . e + ' + (socket.livello - saltaLiv[1]) + ' bits x Livello:' });
   else //fd2b
-    socket.emit('new_number', { liv: socket.livello, ok: true, msg: '🏆🏆🏆🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In BINARIO con . e + ' + (socket.livello - saltaLiv[2]) + ' bits x Livello:' });
+    socket.emit('new_number', { liv: socket.livello, ok: completed, msg: '🏆🏆🏆🏆&#x270C; Converti ' + xnumgara.get(socket.classe)[socket.livello] + '<sub>10</sub> In BINARIO con . e + ' + (socket.livello - saltaLiv[2]) + ' bits x Livello:' });
 
 }
 function aggiorna_iscritti(socket,myid,msg) {
@@ -293,7 +294,13 @@ io.on('connection', function (socket) {
 
 
   //  console.log('Aggiorno iscritti ');
-    aggiorna_iscritti(socket,myid,message);
+    const session = playerSessions.get(socket.playerSessionKey);
+    if (session) {
+      session.punti = socket.punti;
+      session.prove = socket.prove;
+      session.livello = socket.livello;
+    }
+    aggiorna_iscritti(socket,socket.playerId,message);
     
     const d1 = new Date();
     const startTime = gareInRun.get(socket.classe);
@@ -385,6 +392,15 @@ io.on('connection', function (socket) {
     let username = ent.encode(newname.username);
     let classe=ent.encode(newname.classe); 
     let myid = socket.id;
+    const playerId = typeof newname.playerId === 'string' && newname.playerId.length <= 100
+      ? newname.playerId
+      : socket.id;
+    const playerSessionKey = JSON.stringify([classe, playerId]);
+    const savedSession = playerSessions.get(playerSessionKey);
+    const canResume = savedSession
+      && gara.has(classe)
+      && xnumgara.has(classe)
+      && xnumgara.get(classe)[savedSession.livello] !== undefined;
    // console.log(`Client cID ${myid} `);
   //  console.log(`${username} si è unito alla clesse ${classe} `);
     if (!gara.has(classe)) {
@@ -400,31 +416,63 @@ io.on('connection', function (socket) {
         iscritti.set(classe,new Map());
     }
     
-    socket.username = String.fromCodePoint(userSimbol++);
-    socket.real= username;
-    socket.punti = 0;
-    socket.prove = 0;
+    if (canResume) {
+      socket.username = savedSession.username;
+      socket.real = savedSession.real;
+      socket.punti = savedSession.punti;
+      socket.prove = savedSession.prove;
+      socket.livello = savedSession.livello;
+      if (savedSession.socketId) {
+        const previousSocket = io.sockets.sockets.get(savedSession.socketId);
+        if (previousSocket && previousSocket.id !== myid) {
+          previousSocket.disconnect(true);
+        }
+        for (const partecipanti of gara.get(classe)) {
+          partecipanti.delete(savedSession.socketId);
+        }
+      }
+    } else {
+      socket.username = String.fromCodePoint(userSimbol++);
+      socket.real = username;
+      socket.punti = 0;
+      socket.prove = 0;
+      socket.livello = 0;
+    }
     socket.classe = classe;
-    socket.livello = 0;
+    socket.playerId = playerId;
+    socket.playerSessionKey = playerSessionKey;
     socket.fase=0;
-   // console.log((gara.get(classe)[0].size));
-    //if (gara.get(classe)[0].size>0)
-    //socketMulticast(gara.get(classe)[0],'new_client', {username:socket.username,classe:socket.classe});
-    gara.get(classe)[0].set(myid, socket);
-    iscritti.get(classe).set(myid,{  username: socket.username , 
-        real: socket.real,  
-        punti: socket.punti,
-        prove: socket.prove,
-        classe: socket.classe,
-        livello: socket.livello
-     } );
-   // console.log("classe:"+classe+" iscritti "+iscritti.get(classe).size+" livello 0 "+gara.get(classe)[0].size);
-    socketMulticast(gara.get(socket.classe)[0],'new_client',{username:socket.username,classe:socket.classe,real:socket.real, punti:0});
-//        socket.broadcast.emit('new_client', {username:socket.username,classe:socket.classe,real:socket.real, punti:0});
- //   socket.emit('new_client', {username:socket.username,classe:socket.classe,real:socket.real, punti:0});
+    gara.get(classe)[socket.livello].set(myid, socket);
+    const session = {
+      username: socket.username,
+      real: socket.real,
+      punti: socket.punti,
+      prove: socket.prove,
+      livello: socket.livello,
+      socketId: myid
+    };
+    playerSessions.set(playerSessionKey, session);
+    iscritti.get(classe).set(playerId, {
+      username: socket.username,
+      real: socket.real,
+      punti: socket.punti,
+      prove: socket.prove,
+      classe: socket.classe,
+      livello: socket.livello,
+      VotoPer4: 2 * socket.punti - socket.prove
+    });
     socket.emit('gara',gare);
     socket.emit('avatar', {username:socket.username, real:socket.real});
-    socket.emit('new_number',{ liv:socket.livello, msg :'Converti '+xnumgara.get(socket.classe)[socket.livello]+'<sub>10</sub> In binario per il livello '});
+    if (canResume) {
+      socket.emit('resume', {
+        livello: socket.livello,
+        punti: socket.punti,
+        prove: socket.prove
+      });
+      premia(socket, false);
+    } else {
+      socket.emit('new_number',{ liv:socket.livello, msg :'Converti '+xnumgara.get(socket.classe)[socket.livello]+'<sub>10</sub> In binario per il livello '});
+    }
 });
 
   // when the client emits 'typing', we broadcast it to others
@@ -443,6 +491,11 @@ io.on('connection', function (socket) {
 
   // when the user disconnects.. perform this
   socket.on('disconnect', function () {
+    const session = socket.playerSessionKey && playerSessions.get(socket.playerSessionKey);
+    if (session && session.socketId === socket.id) {
+      session.socketId = null;
+    }
+
     if (socket.classe) {
       const livelli = gara.get(socket.classe);
       if (livelli) {
@@ -450,16 +503,6 @@ io.on('connection', function (socket) {
           partecipanti.delete(socket.id);
         }
 
-        if (!livelli.some((partecipanti) => partecipanti.size > 0) && gareInWait.has(socket.classe)) {
-          gareInWait.delete(socket.classe);
-          gara.delete(socket.classe);
-          xnumgara.delete(socket.classe);
-          iscritti.delete(socket.classe);
-          if (gareInWait.size === 0 && countDown) {
-            clearInterval(countDown);
-            countDown = false;
-          }
-        }
       }
     }
 
