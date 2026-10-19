@@ -473,6 +473,9 @@ io.on('connection', function (socket) {
     } else {
       socket.emit('new_number',{ liv:socket.livello, msg :'Converti '+xnumgara.get(socket.classe)[socket.livello]+'<sub>10</sub> In binario per il livello '});
     }
+    if (gareInRun.has(classe)) {
+      socket.emit('down', 0);
+    }
 });
 
   // when the client emits 'typing', we broadcast it to others
