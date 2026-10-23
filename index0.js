@@ -52,6 +52,9 @@ const gara = new Map();
 const xnumgara= new Map(); 
 const iscritti= new Map(); 
 const playerSessions = new Map();
+const challengeTimers = new Map();
+const challengeDurationMs = 45 * 60 * 1000;
+const inactivityDurationMs = 14.5 * 60 * 1000;
 const data = new Date();
 let countDown=false;
 let gare=data.toISOString();
@@ -83,7 +86,7 @@ function inviaAttese() {
 
     if (rimanenti <= 0) {
       gareInWait.delete(nomegara);
-      gareInRun.set(nomegara, new Date());
+      avviaChallenge(nomegara);
     } else {
       gareInWait.set(nomegara, rimanenti);
     }
@@ -93,6 +96,93 @@ function inviaAttese() {
     clearInterval(countDown);
     countDown = false;
   }
+}
+
+function resetTimerInattivita(classe) {
+  const timers = challengeTimers.get(classe);
+  if (!timers) return;
+
+  clearTimeout(timers.inattivita);
+  timers.inattivita = setTimeout(() => terminaChallenge(classe, 'inattività'), inactivityDurationMs);
+}
+
+function avviaChallenge(classe) {
+  if (gareInRun.has(classe)) return;
+
+  const startTime = new Date();
+  gareInRun.set(classe, startTime);
+  const timers = {
+    durata: setTimeout(() => terminaChallenge(classe, 'durata massima'), challengeDurationMs),
+    inattivita: null
+  };
+  challengeTimers.set(classe, timers);
+  resetTimerInattivita(classe);
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (character) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[character]);
+}
+
+function terminaChallenge(classe, motivo) {
+  const startTime = gareInRun.get(classe);
+  if (!startTime) return;
+
+  const timers = challengeTimers.get(classe);
+  if (timers) {
+    clearTimeout(timers.durata);
+    clearTimeout(timers.inattivita);
+    challengeTimers.delete(classe);
+  }
+  gareInRun.delete(classe);
+
+  const partecipanti = gara.get(classe) || [];
+  for (const livello of partecipanti) {
+    socketMulticast(livello, 'gameover', { motivo });
+  }
+
+  const endTime = new Date();
+  const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  const classifica = Array.from((iscritti.get(classe) || new Map()).values())
+    .sort((a, b) => b.VotoPer4 - a.VotoPer4);
+  const righeClassifica = classifica.length
+    ? classifica.map((giocatore, index) => `
+        <tr>
+          <td style="padding: 8px; border: 1px solid #ddd;">${index + 1}</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(giocatore.real)}${escapeHtml(giocatore.username)}</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${giocatore.VotoPer4 / 4}</td>
+          <td style="padding: 8px; border: 1px solid #ddd;">${giocatore.punti} - ${giocatore.prove}</td>
+        </tr>`)
+      .join('')
+    : '<tr><td colspan="4" style="padding: 8px; border: 1px solid #ddd;">Nessun giocatore iscritto.</td></tr>';
+
+  const emailHtml = `
+    <p>Riepilogo della challenge <strong>${escapeHtml(classe)}</strong>.</p>
+    <p>Terminata per ${escapeHtml(motivo)}.</p>
+    <p>Inizio: ${startTime.toLocaleString('it-IT', options)}<br>Fine: ${endTime.toLocaleString('it-IT', options)}</p>
+    <h2>Posizioni / Voti</h2>
+    <table style="width:100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background-color: #f2f2f2;">
+          <th style="padding: 8px; border: 1px solid #ddd;">Posizione</th>
+          <th style="padding: 8px; border: 1px solid #ddd;">Giocatore</th>
+          <th style="padding: 8px; border: 1px solid #ddd;">Voto</th>
+          <th style="padding: 8px; border: 1px solid #ddd;">Punti - tentativi</th>
+        </tr>
+      </thead>
+      <tbody>${righeClassifica}</tbody>
+    </table>`;
+
+  sendAdminEmail(
+    'omarillo.register@gmail.com',
+    `Binary Challenge - ${classe}`,
+    emailHtml
+  );
 }
 
 function condizione (msg,socket){
@@ -264,14 +354,20 @@ io.on('connection', function (socket) {
   
       // Quando un messaggio viene ricevuto, il nome utente del client viene recuperato e inviato agli altri partecipanti
   socket.on('message', function (message) {
-    let myid = socket.id;
-   // console.log(socket.punti-socket.prove );
-    message = ent.encode(message.msg);
-   if  ((socket.punti-socket.prove)<-5)
-    { // console.log(socket.punti-socket.prove );
-      socket.emit('banned');}
-   else{ 
-    if (condizione(message,socket)) {
+        if (!socket.classe || !gareInRun.has(socket.classe)) {
+          socket.emit('gameover', { motivo: 'challenge terminata' });
+          return;
+        }
+
+        let myid = socket.id;
+       // console.log(socket.punti-socket.prove );
+        message = ent.encode(message.msg);
+       if  ((socket.punti-socket.prove)<-5)
+        { // console.log(socket.punti-socket.prove );
+          socket.emit('banned');}
+       else{
+        resetTimerInattivita(socket.classe);
+        if (condizione(message,socket)) {
       socket.punti += 1 + Math.floor(socket.livello / 8);
       xnumgara.get(socket.classe)[socket.livello] = Math.pow(2, socket.livello) + Math.floor(Math.random() * Math.pow(2, socket.livello + 1));
       // POSIZIONATO CORRETTAMENTE gara.get(socket.classe)[socket.livello].delete(myid);
@@ -301,72 +397,6 @@ io.on('connection', function (socket) {
       session.livello = socket.livello;
     }
     aggiorna_iscritti(socket,socket.playerId,message);
-    
-    const d1 = new Date();
-    const startTime = gareInRun.get(socket.classe);
-    if (startTime && (d1 - startTime) > (45 * 60 * 1000)) {
-      const myclass = gara.get(socket.classe)
-      gareInRun.delete(socket.classe);
-      for (let i = myclass.length; i > 0;)
-        socketMulticast(gara.get(socket.classe)[--i], 'gameover', { liv: socket.livello, username: socket.username, real: socket.real, classe: socket.classe, punti: (2 * socket.punti - socket.prove), message: message });
-      console.log('invio email agli iscritti ' + socket.classe);
-     // Formatta le date per il soggetto dell'email
-      const endTime = d1;
-      const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-      const startTimeFormatted = startTime.toLocaleString('it-IT', options);
-      const endTimeFormatted = endTime.toLocaleString('it-IT', options);
-
-      // Costruisci il soggetto dell'email
-      const emailSubject = `Riepilogo Gara: ${socket.classe} - Inizio: ${startTimeFormatted} - Fine: ${endTimeFormatted}`;
-
-      // Costruisci il corpo HTML con i punteggi dei partecipanti
-      let participantsHtml = `
-        <p>Ciao,</p>
-        <p>Di seguito il riepilogo della gara DigitBoy per la classe <strong>${socket.classe}</strong>.</p>
-        <h2>Risultati Partecipanti:</h2>
-        <table style="width:100%; border-collapse: collapse;">
-          <thead>
-            <tr style="background-color: #f2f2f2;">
-              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Nome Utente +Simbolo</th>
-              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Voto </th>
-              <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Punti - tentativi</th>
-            </tr>
-          </thead>
-          <tbody>
-      `;
-
-      // Assicurati che iscritti.get(socket.classe) non sia null o undefined
-      const currentClassIscritti = iscritti.get(socket.classe);
-      if (currentClassIscritti) {
-          // Ordina gli iscritti per punteggio finale decrescente
-          const sortedParticipants = Array.from(currentClassIscritti.values()).sort((a, b) => b.VotoPer4 - a.VotoPer4);
-
-          sortedParticipants.forEach(userData => {
-              participantsHtml += `
-                  <tr>
-                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.real+userData.username}</td>
-                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.VotoPer4/4}</td>
-                      <td style="padding: 8px; border: 1px solid #ddd;">${userData.punti} - ${userData.prove }</td>
-                  </tr> 
-              `;
-          });
-      } else {
-          participantsHtml += `<tr><td colspan="3" style="padding: 8px; border: 1px solid #ddd;">Nessun dato partecipante disponibile.</td></tr>`;
-      }
-
-      participantsHtml += `
-          </tbody>
-        </table>
-        <p>Grazie per aver utilizzato il servizio!</p>
-      `;
-
-      // Invia l'email all'indirizzo amministratore
-      sendAdminEmail(
-        process.env.ADMIN_EMAIL, // L'indirizzo email del singolo destinatario
-        emailSubject,
-        participantsHtml
-      );
-    }
    }
   });
 
@@ -463,6 +493,9 @@ io.on('connection', function (socket) {
     });
     socket.emit('gara',gare);
     socket.emit('avatar', {username:socket.username, real:socket.real});
+    if (gareInRun.has(classe)) {
+      resetTimerInattivita(classe);
+    }
     if (canResume) {
       socket.emit('resume', {
         livello: socket.livello,

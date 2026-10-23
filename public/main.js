@@ -315,8 +315,10 @@ socket.on('banned', function () {
   
   });
 
-  socket.on('gameover', function () {
-    $('#top1').text(' Game Over ');
+  socket.on('gameover', function (data) {
+    $('#top1').text(data && data.motivo
+      ? ' Challenge terminata: ' + data.motivo
+      : ' Game Over ');
   socket.disconnect();
   
   });
