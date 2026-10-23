@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
 });
 
 // Funzione per inviare email a un singolo indirizzo amministratore
-async function sendAdminEmail(recipientEmail, subject, htmlContent) {
+async function sendAdminEmail(recipientEmail, subject, htmlContent, textContent) {
   if (!recipientEmail) {
     console.error("Errore: Indirizzo email del destinatario amministratore non configurato.");
     return;
@@ -30,6 +30,7 @@ async function sendAdminEmail(recipientEmail, subject, htmlContent) {
     from: process.env.EMAIL_USER, // L'indirizzo email del mittente
     to: recipientEmail,          // L'indirizzo email del destinatario singolo
     subject: subject,
+    text: textContent,
     html: htmlContent
   };
 
@@ -156,10 +157,23 @@ function terminaChallenge(classe, motivo) {
           <td style="padding: 8px; border: 1px solid #ddd;">${index + 1}</td>
           <td style="padding: 8px; border: 1px solid #ddd;">${escapeHtml(giocatore.real)}${escapeHtml(giocatore.username)}</td>
           <td style="padding: 8px; border: 1px solid #ddd;">${giocatore.VotoPer4 / 4}</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">${giocatore.punti} - ${giocatore.prove}</td>
         </tr>`)
       .join('')
-    : '<tr><td colspan="4" style="padding: 8px; border: 1px solid #ddd;">Nessun giocatore iscritto.</td></tr>';
+    : '<tr><td colspan="3" style="padding: 8px; border: 1px solid #ddd;">Nessun giocatore iscritto.</td></tr>';
+  const classificaTestuale = classifica.length
+    ? classifica.map((giocatore, index) =>
+      `${index + 1}. ${giocatore.real}${giocatore.username} - Voto: ${giocatore.VotoPer4 / 4}`)
+      .join('\n')
+    : 'Nessun giocatore iscritto.';
+  const emailText = [
+    `Riepilogo della challenge ${classe}.`,
+    `Terminata per ${motivo}.`,
+    `Inizio: ${startTime.toLocaleString('it-IT', options)}`,
+    `Fine: ${endTime.toLocaleString('it-IT', options)}`,
+    '',
+    'Posizioni / Voti',
+    classificaTestuale
+  ].join('\n');
 
   const emailHtml = `
     <p>Riepilogo della challenge <strong>${escapeHtml(classe)}</strong>.</p>
@@ -170,9 +184,8 @@ function terminaChallenge(classe, motivo) {
       <thead>
         <tr style="background-color: #f2f2f2;">
           <th style="padding: 8px; border: 1px solid #ddd;">Posizione</th>
-          <th style="padding: 8px; border: 1px solid #ddd;">Giocatore</th>
+          <th style="padding: 8px; border: 1px solid #ddd;">Nome utente</th>
           <th style="padding: 8px; border: 1px solid #ddd;">Voto</th>
-          <th style="padding: 8px; border: 1px solid #ddd;">Punti - tentativi</th>
         </tr>
       </thead>
       <tbody>${righeClassifica}</tbody>
@@ -181,7 +194,8 @@ function terminaChallenge(classe, motivo) {
   sendAdminEmail(
     'omarillo.register@gmail.com',
     `Binary Challenge - ${classe}`,
-    emailHtml
+    emailHtml,
+    emailText
   );
 }
 

@@ -316,11 +316,23 @@ socket.on('banned', function () {
   });
 
   socket.on('gameover', function (data) {
-    $('#top1').text(data && data.motivo
-      ? ' Challenge terminata: ' + data.motivo
-      : ' Game Over ');
-  socket.disconnect();
+    const motivo = data && data.motivo;
+    const messaggio = motivo === 'inattività'
+      ? 'La partita è stata chiusa perché non ci sono state risposte per 14 minuti e 30 secondi.'
+      : motivo === 'durata massima'
+        ? 'La partita è terminata: è stato raggiunto il limite di 45 minuti.'
+        : 'La partita è terminata.';
+    $('#top1').text('CHALLENGE TERMINATA');
+    $('#challengeEndedMessage').text(messaggio);
+    $('#challengeEndedOverlay').prop('hidden', false);
+    $('#inputMessage').prop('disabled', true);
+    $('#challengeEndedDismiss').trigger('focus');
+    socket.disconnect();
   
+  });
+
+  $('#challengeEndedDismiss').on('click', function () {
+    $('#challengeEndedOverlay').prop('hidden', true);
   });
 
   // Whenever the server emits 'user joined', log it in the chat body
