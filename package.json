@@ -13,11 +13,11 @@
     "cors": "^2.8.5",
     "ent": "^2.2.0",
     "express": "^4.19.2",
-    "nodemailer": "^7.0.3",
+    "nodemailer": "^10.2.1",
     "socket.io": "^4.7.5"
   },
   "engines": {
-    "node": "22.x"
+    "node": "26.12.1"
   },
   "repository": {
     "url": "https://glitch.com/edit/#!/glitch-hello-react"
